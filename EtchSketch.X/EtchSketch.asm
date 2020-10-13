@@ -63,7 +63,8 @@ SETUP:
     
 ;####EMPIEZA MAINLOOP####     
 LOOP:
-    BCF	    ADCON0, 2
+    CALL    CONFIG_ADC
+    BANKSEL PORTA
     CALL    DELAY_AQ
     BSF	    ADCON0, GO
     BTFSC   ADCON0, GO
@@ -77,7 +78,8 @@ LOOP:
     CALL    RECIBIR
     
 ;###########################################
-    BSF	    ADCON0, 2
+    CALL    CONFIG_ADC2
+    BANKSEL PORTA
     CALL    DELAY_AQ
     BSF	    ADCON0, GO
     BTFSC   ADCON0, GO
@@ -124,6 +126,15 @@ CONFIG_ADC:
     MOVWF   ADCON0
     RETURN
     
+CONFIG_ADC2:
+    BANKSEL ADCON1
+    MOVLW   B'00000000'
+    MOVWF   ADCON1
+    BANKSEL ADCON0
+    MOVLW   B'01001001'
+    MOVWF   ADCON0
+    RETURN
+    
 CONFIG_TXRX:
     BANKSEL TXSTA
     BCF	    TXSTA, SYNC
@@ -158,14 +169,14 @@ DELAY_AQ:
     RETURN
     
 DELAY_SMALL
-    MOVLW .40
+    MOVLW .10
     MOVFW CONT1
     DECFSZ CONT1, F
                GOTO $-1 ;IR A PC - 1, REGRESAR A DECFSZ
  RETURN
  
 DELAY_MULTPLX
-    MOVLW .40
+    MOVLW .10
     MOVWF CONT2
 CONFIG1:    
     CALL DELAY_SMALL
