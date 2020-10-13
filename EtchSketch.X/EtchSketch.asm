@@ -18,8 +18,11 @@
 ;#####VARIABLES####
 GPR UDATA
 ADC_VAL RES 1
+ADC_VAL2 RES 1
 DECODE	RES 1
 DECODE2	RES 1
+DECODE3 RES 1
+DECODE4 RES 1
 CONT1	RES 1
 CONT2	RES 1
  
@@ -74,7 +77,18 @@ LOOP:
     CALL    RECIBIR
     
 ;###########################################
+    BSF	    ADCON0, 2
+    CALL    DELAY_AQ
+    BSF	    ADCON0, GO
+    BTFSC   ADCON0, GO
+    GOTO    $-1
+    MOVF    ADRESH, W
+    MOVWF   ADC_VAL2
+    ;MOVWF   DECODE
+    ;MOVWF   DECODE2
     
+    CALL    ENVIO2
+    CALL    RECIBIR2 
 ;########################################    
     
     
@@ -175,10 +189,27 @@ ENVIO:
     MOVWF   TXREG
     RETURN
     
+RECIBIR2:
+    BTFSS   PIR1, RCIF
+    RETURN
+    MOVF    RCREG, W
+    MOVWF   DECODE3
+    MOVWF   DECODE4
+    RETURN
+    
+ENVIO2:
+    BTFSS   PIR1, TXIF
+    RETURN
+    MOVFW   ADC_VAL2
+    MOVWF   TXREG
+    RETURN
+    
 SEG7:
     CLRF PORTB
     BSF PORTD, 1
     BCF PORTD, 2
+    BCF PORTD, 3
+    BCF PORTD, 4
     MOVF DECODE, W
     CALL TABLA_7SEG
     MOVWF PORTB
@@ -187,11 +218,35 @@ SEG7:
     CLRF PORTB
     BCF PORTD, 1
     BSF PORTD, 2
+    BCF PORTD, 3
+    BCF PORTD, 4
     SWAPF DECODE2, W
     MOVWF DECODE2
     CALL TABLA_7SEG
     MOVWF PORTB
     CALL DELAY_MULTPLX
+    
+    CLRF PORTB
+    BCF PORTD, 1
+    BCF PORTD, 2
+    BSF PORTD, 3
+    BCF PORTD, 4
+    MOVF DECODE3, W
+    CALL TABLA_7SEG
+    MOVWF PORTB
+    CALL DELAY_MULTPLX
+    
+    CLRF PORTB
+    BCF PORTD, 1
+    BCF PORTD, 2
+    BCF PORTD, 3
+    BSF PORTD, 4
+    SWAPF DECODE4, W
+    MOVWF DECODE4
+    CALL TABLA_7SEG
+    MOVWF PORTB
+    CALL DELAY_MULTPLX
+    
     RETURN
     
     END
