@@ -92,20 +92,26 @@ SETUP:
 ;####EMPIEZA MAINLOOP####     
 LOOP:
     CALL    LEC_POTX
-    CALL    CALC_X
+    ;CALL    CALC_X
     CALL    DELAY_AQ
     CALL    LEC_POTY
-    CALL    CALC_Y
-    CALL    ENVIO
-    CALL    RECIBIR
-    
+    ;CALL    CALC_Y
+    CALL    SEL_ENVIO
+    ;CALL    ENVIO
+    ;CALL    RECIBIR
+
 ;###########################################
     
     
-    CALL    ENVIO2
-    CALL    RECIBIR2 
+    ;CALL    ENVIO2
+    ;CALL    RECIBIR2 
 ;########################################    
-    
+    MOVFW   ADC_VAL
+    MOVWF   DECODE
+    MOVWF   DECODE2
+    MOVFW   ADC_VAL2
+    MOVWF   DECODE3
+    MOVWF   DECODE4
     
     CALL SEG7
     
@@ -150,23 +156,22 @@ CONFIG_ADC2:
     
 CONFIG_TXRX:
     BANKSEL TXSTA
-    BCF	    TXSTA, SYNC
-    BSF	    TXSTA, BRGH
+    BCF     TXSTA, SYNC
+    BSF     TXSTA, BRGH
     BANKSEL BAUDCTL
-    BSF	    BAUDCTL, BRG16
+    BCF     BAUDCTL, BRG16
     BANKSEL SPBRG
     MOVLW   .25
     MOVWF   SPBRG
     CLRF    SPBRGH
     BANKSEL RCSTA
-    BSF	    RCSTA, SPEN
-    BCF	    RCSTA, RX9
-    BSF	    RCSTA, CREN
+    BSF     RCSTA, SPEN
+    BCF     RCSTA, RX9
+    BSF     RCSTA, CREN
     BANKSEL TXSTA
-    BSF	    TXSTA, TXEN
+    BSF     TXSTA, TXEN
     BANKSEL PORTA
     RETURN
-    
     
 DELAY_AQ:
     NOP
@@ -209,7 +214,7 @@ RECIBIR:
 ENVIO:
     BTFSS   PIR1, TXIF
     RETURN
-    MOVFW   XCOR
+    MOVFW   ADC_VAL
     MOVWF   TXREG
     RETURN
     
@@ -224,7 +229,7 @@ RECIBIR2:
 ENVIO2:
     BTFSS   PIR1, TXIF
     RETURN
-    MOVFW   YCOR
+    MOVFW   ADC_VAL2
     MOVWF   TXREG
     RETURN
     
@@ -373,34 +378,95 @@ LEC_POTY:
     ;MOVWF   DECODE2
     RETURN
     
+SEL_ENVIO:
+    BTFSC   BAND, 0
+    GOTO    ENVIO1
+    BTFSC   BAND, 1
+    GOTO    ENVIO3
+    BTFSC   BAND, 2
+    GOTO    ENVIO4
+    RETURN
+ENVIO4:
+    BCF     BAND, 2
+    BSF     BAND, 0
+    BTFSS   PIR1, TXIF
+    RETURN
+    ;MOVFW   ADC_VAL
+    MOVLW   0xA
+    MOVWF   TXREG
+    RETURN
+ENVIO3:
+    BCF     BAND, 1
+    BSF     BAND, 2
+    BTFSS   PIR1, TXIF
+    RETURN
+    MOVFW   ADC_VAL
+    MOVWF   TXREG
+    RETURN
+ENVIO1:
+    BCF     BAND, 0
+    BSF     BAND, 1
+    BTFSS   PIR1, TXIF
+    RETURN
+    MOVFW   ADC_VAL2
+    MOVWF   TXREG
+    RETURN
+    
 ;SEL_ENVIO:
 ;    BTFSC   BAND, 0
-;    GOTO    ENVIO1
+;    GOTO    ENVIOX
 ;    BTFSC   BAND, 1
-;    GOTO    ENVIO2
+;    GOTO    ENVIOCO
 ;    BTFSC   BAND, 2
-;    GOTO    ENVIO3
+;    GOTO    ENVIOSP
 ;    BTFSC   BAND, 3
-;    GOTO    ENVIO4
+;    GOTO    ENVIOY
 ;    BTFSC   BAND, 4
-;    GOTO    ENVIO5
+;    GOTO    ENVIO4
 ;    RETURN
-;    
-;ENVIO1:
-;    BCF     BAND, 0
-;    BSF     BAND, 1
+;ENVIO4:
+;    BCF     BAND, 2
+;    BSF     BAND, 0
 ;    BTFSS   PIR1, TXIF
 ;    RETURN
-;    MOVWF   XCOR
+;    ;MOVFW   ADC_VAL
+;    MOVLW   0xA
 ;    MOVWF   TXREG
 ;    RETURN
-;ENVIO2:
+;ENVIOCO:
 ;    BCF     BAND, 1
 ;    BSF     BAND, 2
 ;    BTFSS   PIR1, TXIF
 ;    RETURN
-;    MOVLW   .5
+;    MOVLW   0x2C
 ;    MOVWF   TXREG
-;    RETURN    
+;    RETURN
+;ENVIOSP:
+;    BCF     BAND, 2
+;    BSF     BAND, 3
+;    BTFSS   PIR1, TXIF
+;    RETURN
+;    MOVLW   0x20
+;    MOVWF   TXREG
+;    RETURN
+;ENVIOY:
+;    BCF     BAND, 3
+;    BSF     BAND, 4
+;    BTFSS   PIR1, TXIF
+;    RETURN
+;    MOVWF   YCOR
+;    MOVWF   TXREG
+;    RETURN
+;ENVIOX:
+;    BCF     BAND, 0
+;    BSF     BAND, 1
+;    BTFSS   PIR1, TXIF
+;    RETURN
+;    MOVFW   XCOR
+;    ;MOVLW   .4
+;    ;ADDLW   0x30
+;    MOVWF   TXREG
+;    RETURN
+;    
 
     END
