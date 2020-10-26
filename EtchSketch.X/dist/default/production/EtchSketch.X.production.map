@@ -1,12 +1,12 @@
 MPLINK 5.08, LINKER
-Linker Map File - Created Mon Oct 26 00:39:44 2020
+Linker Map File - Created Mon Oct 26 03:45:09 2020
 
                                  Section Info
                   Section       Type    Address   Location Size(Bytes)
                 ---------  ---------  ---------  ---------  ---------
                  RES_VECT       code   0x000000    program   0x000026
                    .cinit    romdata   0x000013    program   0x000004
-                MAIN_PROG       code   0x000015    program   0x0001c6
+                MAIN_PROG       code   0x000015    program   0x0001b2
 .config_2007_BUILD/DEFAULT/PRODUCTION/ETCHSKE       code   0x002007    program   0x000002
 .config_2008_BUILD/DEFAULT/PRODUCTION/ETCHSKE       code   0x002008    program   0x000002
                       GPR      udata   0x000020       data   0x000011
@@ -16,41 +16,42 @@ Linker Map File - Created Mon Oct 26 00:39:44 2020
                               Program Memory Usage 
                                Start         End      
                            ---------   ---------      
-                            0x000000    0x0000f7      
+                            0x000000    0x0000ed      
                             0x002007    0x002008      
-            250 out of 8455 program addresses used, program memory utilization is 2%
+            240 out of 8455 program addresses used, program memory utilization is 2%
 
 
 
                               Symbols - Sorted by Name
                      Name    Address   Location    Storage File                     
                 ---------  ---------  ---------  --------- ---------                
-                  CONFIG1   0x000082    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-               CONFIG_ADC   0x000047    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-              CONFIG_ADC2   0x000050    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                CONFIG_IO   0x000035    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-              CONFIG_TXRX   0x000059    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                 DELAY_AQ   0x000070    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-            DELAY_MULTPLX   0x000080    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-              DELAY_SMALL   0x00007b    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                    ENVIO   0x000092    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                   ENVIO1   0x0000f1    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                   ENVIO2   0x00009e    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                   ENVIO3   0x0000ea    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                   ENVIO4   0x0000e3    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                 LEC_POTX   0x0000ca    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                 LEC_POTY   0x0000d4    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                     LOOP   0x000024    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                  RECIBIR   0x00008b    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                 RECIBIR2   0x000097    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                     SEG7   0x0000a3    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                SEL_ENVIO   0x0000de    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-              SEL_RECIBIR   0x000086    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                  CONFIG1   0x00007d    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+               CONFIG_ADC   0x000042    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+              CONFIG_ADC2   0x00004b    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                CONFIG_IO   0x000030    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+              CONFIG_TXRX   0x000054    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                 DELAY_AQ   0x00006b    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+            DELAY_MULTPLX   0x00007b    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+              DELAY_SMALL   0x000076    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                    ENVIO   0x000089    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                   ENVIO1   0x0000e7    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                   ENVIO2   0x000094    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                   ENVIO3   0x0000e0    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                   ENVIO4   0x0000d9    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                 LEC_POTX   0x0000c0    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                 LEC_POTY   0x0000ca    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                     LOOP   0x000023    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                  RECIBIR   0x000083    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                 RECIBIR2   0x00008e    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                     SEG7   0x000099    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                SEL_ENVIO   0x0000d4    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+              SEL_RECIBIR   0x000081    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                  SEP_TTL   0x0000ee    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
                     SETUP   0x000015    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
                TABLA_7SEG   0x000001    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-          _MAIN_PROG_0069   0x00007e    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+          _MAIN_PROG_0064   0x000079    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+          _MAIN_PROG_00B1   0x0000c6    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
           _MAIN_PROG_00BB   0x0000d0    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-          _MAIN_PROG_00C5   0x0000da    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
                   ADC_VAL   0x000020       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
                  ADC_VAL2   0x000021       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
                      BAND   0x00002d       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
@@ -76,30 +77,31 @@ Linker Map File - Created Mon Oct 26 00:39:44 2020
                 ---------  ---------  ---------  --------- ---------                
                TABLA_7SEG   0x000001    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
                     SETUP   0x000015    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                     LOOP   0x000024    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                CONFIG_IO   0x000035    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-               CONFIG_ADC   0x000047    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-              CONFIG_ADC2   0x000050    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-              CONFIG_TXRX   0x000059    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                 DELAY_AQ   0x000070    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-              DELAY_SMALL   0x00007b    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-          _MAIN_PROG_0069   0x00007e    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-            DELAY_MULTPLX   0x000080    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                  CONFIG1   0x000082    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-              SEL_RECIBIR   0x000086    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                  RECIBIR   0x00008b    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                    ENVIO   0x000092    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                 RECIBIR2   0x000097    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                   ENVIO2   0x00009e    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                     SEG7   0x0000a3    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                 LEC_POTX   0x0000ca    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                     LOOP   0x000023    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                CONFIG_IO   0x000030    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+               CONFIG_ADC   0x000042    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+              CONFIG_ADC2   0x00004b    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+              CONFIG_TXRX   0x000054    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                 DELAY_AQ   0x00006b    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+              DELAY_SMALL   0x000076    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+          _MAIN_PROG_0064   0x000079    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+            DELAY_MULTPLX   0x00007b    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                  CONFIG1   0x00007d    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+              SEL_RECIBIR   0x000081    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                  RECIBIR   0x000083    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                    ENVIO   0x000089    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                 RECIBIR2   0x00008e    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                   ENVIO2   0x000094    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                     SEG7   0x000099    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                 LEC_POTX   0x0000c0    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+          _MAIN_PROG_00B1   0x0000c6    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                 LEC_POTY   0x0000ca    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
           _MAIN_PROG_00BB   0x0000d0    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                 LEC_POTY   0x0000d4    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-          _MAIN_PROG_00C5   0x0000da    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                SEL_ENVIO   0x0000de    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                   ENVIO4   0x0000e3    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                   ENVIO3   0x0000ea    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                   ENVIO1   0x0000f1    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                SEL_ENVIO   0x0000d4    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                   ENVIO4   0x0000d9    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                   ENVIO3   0x0000e0    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                   ENVIO1   0x0000e7    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                  SEP_TTL   0x0000ee    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
                   ADC_VAL   0x000020       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
                  ADC_VAL2   0x000021       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
                    DECODE   0x000022       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm

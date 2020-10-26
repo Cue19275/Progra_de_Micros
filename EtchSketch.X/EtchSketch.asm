@@ -10,7 +10,7 @@
 
 ; CONFIG1
 ; __config 0xE0D4
- __CONFIG _CONFIG1, _FOSC_INTRC_NOCLKOUT & _WDTE_OFF & _PWRTE_OFF & _MCLRE_OFF & _CP_OFF & _CPD_OFF & _BOREN_OFF & _IESO_OFF & _FCMEN_OFF & _LVP_OFF
+ __CONFIG _CONFIG1, _FOSC_INTRC_NOCLKOUT & _WDTE_ON & _PWRTE_OFF & _MCLRE_OFF & _CP_OFF & _CPD_OFF & _BOREN_OFF & _IESO_OFF & _FCMEN_OFF & _LVP_OFF
 ; CONFIG2
 ; __config 0xFFFF
  __CONFIG _CONFIG2, _BOR4V_BOR40V & _WRT_OFF
@@ -66,6 +66,8 @@ TABLA_7SEG
     
 MAIN_PROG CODE                      ; let linker place main program
 SETUP:
+    ;BSF	 STATUS, RP0
+    ;MOVLW B'00001011'
     CALL CONFIG_IO
     CALL CONFIG_ADC
     CALL CONFIG_TXRX
@@ -80,21 +82,21 @@ SETUP:
     CLRF XVIENE
     CLRF YVIENE
     BSF	 BAND, 0
-    BSF	 BAND2, 0
+    ;BSF	 BAND2, 0
     
 ;####EMPIEZA MAINLOOP####     
 LOOP:
     CALL    LEC_POTX
-    CALL    SEL_RECIBIR
+    ;CALL    SEL_RECIBIR
     CALL    DELAY_AQ
-    CALL    SEL_RECIBIR
+    ;CALL    SEL_RECIBIR
     CALL    LEC_POTY
-    CALL    SEL_RECIBIR
+    ;CALL    SEL_RECIBIR
     CALL    SEL_ENVIO
     CALL    SEL_RECIBIR
     ;CALL    RECIBIR
 
-;###########################################
+;########################################### Si la Z se pone en 1 la resta es 0
     ;CALL    DELAY_AQ
     ;CALL    RECIBIR2 
     MOVFW XVIENE
@@ -105,7 +107,9 @@ LOOP:
     MOVWF DECODE4
 ;########################################    
     CALL SEG7
-    CALL    SEL_RECIBIR
+    ;CALL    SEL_RECIBIR
+    ;CALL RECIBIR
+    ;CALL RECIBIR2
     GOTO    LOOP                         ; loop forever
     
 ;####SETUPS####
@@ -194,14 +198,14 @@ CONFIG1:
     
 SEL_RECIBIR:
     BTFSC   BAND2, 0
-    GOTO    RECIBIR
-    BTFSC   BAND2, 1
     GOTO    RECIBIR2
-    RETURN
+;    BTFSC   BAND2, 1
+;    GOTO    RECIBIR2
+    
     
 RECIBIR:
-    BCF	    BAND2, 0
-    BSF	    BAND2, 1
+    BSF	    BAND2, 0
+    ;BSF	    BAND2, 1
     BTFSS   PIR1, RCIF
     RETURN
     MOVF    RCREG, W
@@ -216,8 +220,8 @@ ENVIO:
     RETURN
     
 RECIBIR2:
-    BSF	    BAND2, 0
-    BCF	    BAND2, 1
+    BCF	    BAND2, 0
+    ;BCF	    BAND2, 1
     BTFSS   PIR1, RCIF
     RETURN
     MOVF    RCREG, W
@@ -330,5 +334,8 @@ ENVIO1:
     MOVFW   ADC_VAL2
     MOVWF   TXREG
     RETURN
+    
+SEP_TTL:
+    
     
     END

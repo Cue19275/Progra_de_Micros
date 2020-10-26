@@ -16,11 +16,13 @@ int xcor; //Coordenada en X
 int ycor; //Coordenada en Y
 int xsend; //Envío de X al PIC
 int ysend; //Envío de Y al PIC
+int sendf;
 int fill; //Relleno de mi pincel
 int fill2;
 int fill3;
 int cont;  //Aumento dentro del array
-boolean aver = false; //Var para sincronizar
+int flag; //Bandera para MUX de envío
+int[] send = new int[2];
 
 void setup(){
  size(256,356); //Tamaño de mi canvas
@@ -28,13 +30,14 @@ void setup(){
  fill = 0;
  fill2 = 0;
  fill3 = 0;
+ flag = 0;
  noStroke(); //No se dibuja
  cp5 = new ControlP5(this); //Empieza creación del boton
  font = createFont("Verdana Negrita Cursiva", 12);    //Importo la fuente a usar en el bot
   
   cp5.addButton("reset")//Nombre del boton
-    .setPosition(130, 300)//posicion del boton
-    .setSize(50, 50)//dimensiones del boton
+    .setPosition(10, 270)//posicion del boton
+    .setSize(230, 20)//dimensiones del boton
     .setFont(font)//Implementación de la fuente en el boton
   ;   
   cp5.addButton("azul")
@@ -49,6 +52,11 @@ void setup(){
     ;
    cp5.addButton("verde")
      .setPosition(70, 300)//posicion del boton
+    .setSize(50, 50)//dimensiones del boton
+    .setFont(font)//Implementación de la fuente en el boton
+    ;
+    cp5.addButton("cyan")
+     .setPosition(130, 300)//posicion del boton
     .setSize(50, 50)//dimensiones del boton
     .setFont(font)//Implementación de la fuente en el boton
     ;
@@ -68,32 +76,33 @@ void serialEvent(Serial myPort){
    //Una vez llena la matriz cada celda pasa a ser el valor de una variable de posicion
    if(cont > 1){
     xcor = datosPIC[0];
-    delay(10);
+    delay(5);
     ycor = datosPIC[1];
-    delay(10);
+    delay(5);
     fill = 0;
-    delay(10);
+    delay(5);
     //println(xcor + ", " + ycor); //Se imprimen las coordenadas en el formato requerido
     myPort.write('A'); //Enter en el shell
     cont = 0; //Se reinica el contador para volver a llenar las celdas
-    xsend = int(map(xcor, 0, 255, 0, 99));
-    ysend = int(map(ycor, 0, 255, 0, 99));
-    myPort.write(xsend);
-    delay(10);
-    myPort.write(ysend);
-    delay(10);
- 
+    xsend = int(map(xcor, 0, 255, 0, 15));
+    ysend = 16*int(map(ycor, 0, 255, 0, 15));
+    sendf = ysend+xsend;
+    if(flag == 0){
+      myPort.write(sendf);
+      flag = 1;
+      delay(5);
+    } else {
+      //myPort.write(ysend);
+      flag = 0;
+    }
 
     println(xsend + ", " + ysend); //Se imprimen las coordenadas en el formato requerido
    }
- 
 }
 
 void draw(){
  fill(fill,fill2,fill3); //Se selecciona el color de mi pincel (negro)
  ellipse(xcor, ycor, 15, 15); //Se plotean circulos en las coordenadas registradas
-
-
 }
 
 void reset(){
@@ -115,4 +124,10 @@ void negro(){
   fill = 0;
  fill2 = 0;
  fill3 = 0; 
+}
+
+void cyan(){
+  fill = 0;
+ fill2 = 250;
+ fill3 = 250; 
 }

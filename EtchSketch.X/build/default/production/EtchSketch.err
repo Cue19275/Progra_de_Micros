@@ -1,18 +1,18 @@
 Message[305] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 48 : Using default destination of 1 (file).
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 114 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[305] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 115 : Using default destination of 1 (file).
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 115 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 117 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[305] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 118 : Using default destination of 1 (file).
 Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 118 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[305] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 119 : Using default destination of 1 (file).
 Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 119 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 120 : Register in operand not in bank 0.  Ensure that bank bits are correct.
 Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 121 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 132 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 141 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 149 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 150 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 152 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 155 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[305] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 122 : Using default destination of 1 (file).
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 122 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 123 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 124 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 125 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 136 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 145 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 153 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 154 : Register in operand not in bank 0.  Ensure that bank bits are correct.
 Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 156 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 162 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 159 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 160 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\ETCHSKETCH.X\ETCHSKETCH.ASM 166 : Register in operand not in bank 0.  Ensure that bank bits are correct.
