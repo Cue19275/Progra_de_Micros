@@ -25,10 +25,7 @@ DECODE3 RES 1
 DECODE4 RES 1
 CONT1	RES 1
 CONT2	RES 1
-W_TEMP	RES 1
-STATUS_TEMP RES 1
 XCOR	RES 1
-XCOR2	RES 1
 YCOR	RES 1
 BAND	RES 1
 BAND2	RES 1
@@ -82,23 +79,14 @@ SETUP:
     CLRF XVIENE
     CLRF YVIENE
     BSF	 BAND, 0
-    ;BSF	 BAND2, 0
     
 ;####EMPIEZA MAINLOOP####     
 LOOP:
     CALL    LEC_POTX
-    ;CALL    SEL_RECIBIR
     CALL    DELAY_AQ
-    ;CALL    SEL_RECIBIR
     CALL    LEC_POTY
-    ;CALL    SEL_RECIBIR
     CALL    SEL_ENVIO
     CALL    SEL_RECIBIR
-    ;CALL    RECIBIR
-
-;########################################### Si la Z se pone en 1 la resta es 0
-    ;CALL    DELAY_AQ
-    ;CALL    RECIBIR2 
     MOVFW XVIENE
     MOVWF DECODE
     MOVWF DECODE2
@@ -107,9 +95,6 @@ LOOP:
     MOVWF DECODE4
 ;########################################    
     CALL SEG7
-    ;CALL    SEL_RECIBIR
-    ;CALL RECIBIR
-    ;CALL RECIBIR2
     GOTO    LOOP                         ; loop forever
     
 ;####SETUPS####
@@ -212,13 +197,6 @@ RECIBIR:
     MOVWF   XVIENE
     RETURN
     
-ENVIO:
-    BTFSS   PIR1, TXIF
-    RETURN
-    MOVFW   ADC_VAL
-    MOVWF   TXREG
-    RETURN
-    
 RECIBIR2:
     BCF	    BAND2, 0
     ;BCF	    BAND2, 1
@@ -226,13 +204,6 @@ RECIBIR2:
     RETURN
     MOVF    RCREG, W
     MOVWF   YVIENE
-    RETURN
-    
-ENVIO2:
-    BTFSS   PIR1, TXIF
-    RETURN
-    MOVFW   ADC_VAL2
-    MOVWF   TXREG
     RETURN
     
 SEG7:
@@ -309,15 +280,6 @@ SEL_ENVIO:
     BTFSC   BAND, 1
     GOTO    ENVIO3
     RETURN
-ENVIO4:
-    BCF     BAND, 2
-    BSF     BAND, 0
-    BTFSS   PIR1, TXIF
-    RETURN
-    ;MOVFW   ADC_VAL
-    MOVLW   0xA
-    MOVWF   TXREG
-    RETURN
 ENVIO3:
     BCF     BAND, 1
     BSF     BAND, 0
@@ -335,7 +297,6 @@ ENVIO1:
     MOVWF   TXREG
     RETURN
     
-SEP_TTL:
     
     
     END

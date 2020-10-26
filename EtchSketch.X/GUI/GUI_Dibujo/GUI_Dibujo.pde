@@ -14,23 +14,23 @@ Serial myPort; //Se crea objeto de la librería Serial
 int[] datosPIC = new int[2]; //Matriz que va a contener los datos enviados del PIC, cada celda es un BYTE
 int xcor; //Coordenada en X
 int ycor; //Coordenada en Y
-int xsend; //Envío de X al PIC
-int ysend; //Envío de Y al PIC
-int sendf;
+int xsend; //BYTE 1 DE Envío de X al PIC
+int ysend; //BYTE 2 DE Envío de Y al PIC
+int sendf; //Sostiene ambos BYTES de envío al PIC
 int fill; //Relleno de mi pincel
-int fill2;
-int fill3;
+int fill2;//Relleno de mi pincel
+int fill3;//Relleno de mi pincel
 int cont;  //Aumento dentro del array
 int flag; //Bandera para MUX de envío
-int[] send = new int[2];
 
+//Condiciones iniciales del programa
 void setup(){
  size(256,356); //Tamaño de mi canvas
  background(255); //Fondo blanco
- fill = 0;
+ fill = 0; //Valores iniciales de mi pincel (negro)
  fill2 = 0;
  fill3 = 0;
- flag = 0;
+ flag = 0; //Variable para multiplexar el envío de datos
  noStroke(); //No se dibuja
  cp5 = new ControlP5(this); //Empieza creación del boton
  font = createFont("Verdana Negrita Cursiva", 12);    //Importo la fuente a usar en el bot
@@ -75,33 +75,29 @@ void serialEvent(Serial myPort){
    
    //Una vez llena la matriz cada celda pasa a ser el valor de una variable de posicion
    if(cont > 1){
-    xcor = datosPIC[0];
+    xcor = datosPIC[0]; //Asigno el primer valor recibido por el pic
     delay(5);
-    ycor = datosPIC[1];
+    ycor = datosPIC[1]; //Asigno el segundo valor recibido por el pic
     delay(5);
-    fill = 0;
-    delay(5);
-    //println(xcor + ", " + ycor); //Se imprimen las coordenadas en el formato requerido
+    println(xcor + ", " + ycor); //Se imprimen las coordenadas en el formato requerido
     myPort.write('A'); //Enter en el shell
     cont = 0; //Se reinica el contador para volver a llenar las celdas
-    xsend = int(map(xcor, 0, 255, 0, 15));
+    xsend = int(map(xcor, 0, 255, 0, 15)); //Mapeo de variables para enviarl la posicion al pic
     ysend = 16*int(map(ycor, 0, 255, 0, 15));
-    sendf = ysend+xsend;
-    if(flag == 0){
-      myPort.write(sendf);
+    sendf = ysend+xsend; //Combinacion de los dos nibbles de envío
+    if(flag == 0){ //MUX de envío
+      myPort.write(sendf); //Acción de envío de la variable senf hacia el pic
       flag = 1;
       delay(5);
     } else {
       //myPort.write(ysend);
       flag = 0;
     }
-
-    println(xsend + ", " + ysend); //Se imprimen las coordenadas en el formato requerido
    }
 }
 
 void draw(){
- fill(fill,fill2,fill3); //Se selecciona el color de mi pincel (negro)
+ fill(fill,fill2,fill3); //Se selecciona el color de mi pincel
  ellipse(xcor, ycor, 15, 15); //Se plotean circulos en las coordenadas registradas
 }
 
@@ -109,7 +105,7 @@ void reset(){
 background(255); //Fondo blanco que se sobrepone a lo que ya habia pintado cuando apache
 }
 
-void azul(){
+void azul(){ //Acción de cada boton, modifican las variables de relleno del pincel
   fill = 200;
  fill2 = 0;
  fill3 = 200; 
