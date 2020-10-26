@@ -1,12 +1,12 @@
 MPLINK 5.08, LINKER
-Linker Map File - Created Sun Oct 25 15:49:52 2020
+Linker Map File - Created Sun Oct 25 19:57:11 2020
 
                                  Section Info
                   Section       Type    Address   Location Size(Bytes)
                 ---------  ---------  ---------  ---------  ---------
                  RES_VECT       code   0x000000    program   0x000026
                    .cinit    romdata   0x000013    program   0x000004
-                MAIN_PROG       code   0x000015    program   0x00021e
+                MAIN_PROG       code   0x000015    program   0x00021a
 .config_2007_BUILD/DEFAULT/PRODUCTION/ETCHSKE       code   0x002007    program   0x000002
 .config_2008_BUILD/DEFAULT/PRODUCTION/ETCHSKE       code   0x002008    program   0x000002
                       GPR      udata   0x000020       data   0x00000e
@@ -16,9 +16,9 @@ Linker Map File - Created Sun Oct 25 15:49:52 2020
                               Program Memory Usage 
                                Start         End      
                            ---------   ---------      
-                            0x000000    0x000123      
+                            0x000000    0x000121      
                             0x002007    0x002008      
-            294 out of 8455 program addresses used, program memory utilization is 3%
+            292 out of 8455 program addresses used, program memory utilization is 3%
 
 
 
@@ -44,10 +44,10 @@ Linker Map File - Created Sun Oct 25 15:49:52 2020
             DELAY_MULTPLX   0x000073    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
               DELAY_SMALL   0x00006e    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
                     ENVIO   0x00007f    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                   ENVIO1   0x00011d    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                   ENVIO1   0x00011b    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
                    ENVIO2   0x00008a    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                   ENVIO3   0x000116    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                   ENVIO4   0x00010f    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                   ENVIO3   0x000114    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                   ENVIO4   0x00010d    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
                  LEC_POTX   0x0000f4    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
                  LEC_POTY   0x0000fe    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
                      LOOP   0x00001c    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
@@ -112,9 +112,9 @@ Linker Map File - Created Sun Oct 25 15:49:52 2020
                  LEC_POTY   0x0000fe    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
           _MAIN_PROG_00EF   0x000104    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
                 SEL_ENVIO   0x000108    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                   ENVIO4   0x00010f    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                   ENVIO3   0x000116    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
-                   ENVIO1   0x00011d    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                   ENVIO4   0x00010d    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                   ENVIO3   0x000114    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
+                   ENVIO1   0x00011b    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
                   ADC_VAL   0x000020       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
                  ADC_VAL2   0x000021       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm
                    DECODE   0x000022       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\EtchSketch.X\EtchSketch.asm

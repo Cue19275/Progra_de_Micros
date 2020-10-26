@@ -37,25 +37,7 @@ RES_VECT  CODE    0x0000            ; processor reset vector
     GOTO    SETUP                   ; go to beginning of program
 
 ;####INTERRUPT####
-;ISR_VEC CODE 0X004 
-; PUSH:
-;    BCF   INTCON, GIE
-;    MOVWF W_TEMP
-;    SWAPF STATUS, W
-;    MOVWF STATUS_TEMP
-;ISR:
-;    BTFSC   PIR1, ADIF
-;    CALL    INT_ADC
-;    BTSC    PIR1, RCIF
-;    CALL    INT_REC
-;
-;POP:
-;    SWAPF STATUS_TEMP, W
-;    MOVWF STATUS 
-;    SWAPF W_TEMP, F
-;    SWAPF W_TEMP, W
-;    BSF   INTCON, GIE 
-;    RETFIE   
+
 ;####TABLAS####
 ;Tabla para decodificar valores binarios hacia el display de 7 seg
 TABLA_7SEG
@@ -383,8 +365,8 @@ SEL_ENVIO:
     GOTO    ENVIO1
     BTFSC   BAND, 1
     GOTO    ENVIO3
-    BTFSC   BAND, 2
-    GOTO    ENVIO4
+    ;BTFSC   BAND, 2
+    ;GOTO    ENVIO4
     RETURN
 ENVIO4:
     BCF     BAND, 2
@@ -397,7 +379,7 @@ ENVIO4:
     RETURN
 ENVIO3:
     BCF     BAND, 1
-    BSF     BAND, 2
+    BSF     BAND, 0
     BTFSS   PIR1, TXIF
     RETURN
     MOVFW   ADC_VAL
@@ -412,61 +394,4 @@ ENVIO1:
     MOVWF   TXREG
     RETURN
     
-;SEL_ENVIO:
-;    BTFSC   BAND, 0
-;    GOTO    ENVIOX
-;    BTFSC   BAND, 1
-;    GOTO    ENVIOCO
-;    BTFSC   BAND, 2
-;    GOTO    ENVIOSP
-;    BTFSC   BAND, 3
-;    GOTO    ENVIOY
-;    BTFSC   BAND, 4
-;    GOTO    ENVIO4
-;    RETURN
-;ENVIO4:
-;    BCF     BAND, 2
-;    BSF     BAND, 0
-;    BTFSS   PIR1, TXIF
-;    RETURN
-;    ;MOVFW   ADC_VAL
-;    MOVLW   0xA
-;    MOVWF   TXREG
-;    RETURN
-;ENVIOCO:
-;    BCF     BAND, 1
-;    BSF     BAND, 2
-;    BTFSS   PIR1, TXIF
-;    RETURN
-;    MOVLW   0x2C
-;    MOVWF   TXREG
-;    RETURN
-;ENVIOSP:
-;    BCF     BAND, 2
-;    BSF     BAND, 3
-;    BTFSS   PIR1, TXIF
-;    RETURN
-;    MOVLW   0x20
-;    MOVWF   TXREG
-;    RETURN
-;ENVIOY:
-;    BCF     BAND, 3
-;    BSF     BAND, 4
-;    BTFSS   PIR1, TXIF
-;    RETURN
-;    MOVWF   YCOR
-;    MOVWF   TXREG
-;    RETURN
-;ENVIOX:
-;    BCF     BAND, 0
-;    BSF     BAND, 1
-;    BTFSS   PIR1, TXIF
-;    RETURN
-;    MOVFW   XCOR
-;    ;MOVLW   .4
-;    ;ADDLW   0x30
-;    MOVWF   TXREG
-;    RETURN
-;    
-
     END
