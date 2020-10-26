@@ -1,4 +1,4 @@
-MPASM 5.77                    ETCHSKETCH.ASM   10-25-2020  19:57:10         PAGE  1
+MPASM 5.77                    ETCHSKETCH.ASM   10-26-2020  0:39:43         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -51,437 +51,362 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 000B                  00031 XCOR2   RES 1
 000C                  00032 YCOR    RES 1
 000D                  00033 BAND    RES 1
-                      00034  
-                      00035 ;####RESET VECTOR####
-                      00036 RES_VECT  CODE    0x0000            ; processor reset vector
-0000   2???           00037     GOTO    SETUP                   ; go to beginning of program
-                      00038 
-                      00039 ;####INTERRUPT####
-MPASM 5.77                    ETCHSKETCH.ASM   10-25-2020  19:57:10         PAGE  2
+000E                  00034 BAND2   RES 1
+000F                  00035 XVIENE  RES 1
+0010                  00036 YVIENE  RES 1
+                      00037  
+                      00038 ;####RESET VECTOR####
+                      00039 RES_VECT  CODE    0x0000            ; processor reset vector
+MPASM 5.77                    ETCHSKETCH.ASM   10-26-2020  0:39:43         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-                      00040 
-                      00041 ;####TABLAS####
-                      00042 ;Tabla para decodificar valores binarios hacia el display de 7 seg
-0001                  00043 TABLA_7SEG
-0001   390F           00044     ANDLW B'00001111'
+0000   2???           00040     GOTO    SETUP                   ; go to beginning of program
+                      00041 
+                      00042 ;####INTERRUPT####
+                      00043 
+                      00044 ;####TABLAS####
+                      00045 ;Tabla para decodificar valores binarios hacia el display de 7 seg
+0001                  00046 TABLA_7SEG
+0001   390F           00047     ANDLW B'00001111'
 Message[305]: Using default destination of 1 (file).
-0002   0782           00045     ADDWF PCL
-0003   343F           00046     RETLW   B'000111111' ;O
-0004   3406           00047     RETLW   B'000000110' ;1
-0005   345B           00048     RETLW   B'001011011' ;2
-0006   344F           00049     RETLW   B'001001111' ;3
-0007   3466           00050     RETLW   B'01100110' ;4
-0008   346D           00051     RETLW   B'01101101' ;5
-0009   347D           00052     RETLW   B'01111101' ;6
-000A   3407           00053     RETLW   B'00000111' ;7
-000B   347F           00054     RETLW   B'01111111' ;8
-000C   3467           00055     RETLW   B'01100111' ;9
-000D   3477           00056     RETLW   B'01110111' ;A
-000E   347C           00057     RETLW   B'01111100' ;b
-000F   3439           00058     RETLW   B'00111001' ;C
-0010   345E           00059     RETLW   B'01011110' ;d
-0011   3479           00060     RETLW   B'01111001' ;E
-0012   3471           00061     RETLW   B'01110001' ;F
-                      00062     
-                      00063     
-                      00064 MAIN_PROG CODE                      ; let linker place main program
-0000                  00065 SETUP:
-0000   2???           00066     CALL CONFIG_IO
-0001   2???           00067     CALL CONFIG_ADC
-0002   2???           00068     CALL CONFIG_TXRX
-0003   01??           00069     CLRF BAND
-0004   01??           00070     CLRF XCOR
-0005   01??           00071     CLRF YCOR
-0006   1400           00072     BSF  BAND, 0
-                      00073     
-                      00074 ;####EMPIEZA MAINLOOP####     
-0007                  00075 LOOP:
-0007   2???           00076     CALL    LEC_POTX
-                      00077     ;CALL    CALC_X
-0008   2???           00078     CALL    DELAY_AQ
-0009   2???           00079     CALL    LEC_POTY
-                      00080     ;CALL    CALC_Y
-000A   2???           00081     CALL    SEL_ENVIO
-                      00082     ;CALL    ENVIO
-                      00083     ;CALL    RECIBIR
-                      00084 
-                      00085 ;###########################################
-                      00086     
-                      00087     
-                      00088     ;CALL    ENVIO2
-                      00089     ;CALL    RECIBIR2 
-                      00090 ;########################################    
-000B   08??           00091     MOVFW   ADC_VAL
-MPASM 5.77                    ETCHSKETCH.ASM   10-25-2020  19:57:10         PAGE  3
+0002   0782           00048     ADDWF PCL
+0003   343F           00049     RETLW   B'000111111' ;O
+0004   3406           00050     RETLW   B'000000110' ;1
+0005   345B           00051     RETLW   B'001011011' ;2
+0006   344F           00052     RETLW   B'001001111' ;3
+0007   3466           00053     RETLW   B'01100110' ;4
+0008   346D           00054     RETLW   B'01101101' ;5
+0009   347D           00055     RETLW   B'01111101' ;6
+000A   3407           00056     RETLW   B'00000111' ;7
+000B   347F           00057     RETLW   B'01111111' ;8
+000C   3467           00058     RETLW   B'01100111' ;9
+000D   3477           00059     RETLW   B'01110111' ;A
+000E   347C           00060     RETLW   B'01111100' ;b
+000F   3439           00061     RETLW   B'00111001' ;C
+0010   345E           00062     RETLW   B'01011110' ;d
+0011   3479           00063     RETLW   B'01111001' ;E
+0012   3471           00064     RETLW   B'01110001' ;F
+                      00065     
+                      00066     
+                      00067 MAIN_PROG CODE                      ; let linker place main program
+0000                  00068 SETUP:
+0000   2???           00069     CALL CONFIG_IO
+0001   2???           00070     CALL CONFIG_ADC
+0002   2???           00071     CALL CONFIG_TXRX
+0003   01??           00072     CLRF DECODE
+0004   01??           00073     CLRF DECODE2
+0005   01??           00074     CLRF DECODE3
+0006   01??           00075     CLRF DECODE4
+0007   01??           00076     CLRF BAND
+0008   01??           00077     CLRF BAND2
+0009   01??           00078     CLRF XCOR
+000A   01??           00079     CLRF YCOR
+000B   01??           00080     CLRF XVIENE
+000C   01??           00081     CLRF YVIENE
+000D   1400           00082     BSF  BAND, 0
+000E   1400           00083     BSF  BAND2, 0
+                      00084     
+                      00085 ;####EMPIEZA MAINLOOP####     
+000F                  00086 LOOP:
+000F   2???           00087     CALL    LEC_POTX
+0010   2???           00088     CALL    SEL_RECIBIR
+0011   2???           00089     CALL    DELAY_AQ
+0012   2???           00090     CALL    SEL_RECIBIR
+0013   2???           00091     CALL    LEC_POTY
+MPASM 5.77                    ETCHSKETCH.ASM   10-26-2020  0:39:43         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-000C   00??           00092     MOVWF   DECODE
-000D   00??           00093     MOVWF   DECODE2
-000E   08??           00094     MOVFW   ADC_VAL2
-000F   00??           00095     MOVWF   DECODE3
-0010   00??           00096     MOVWF   DECODE4
-                      00097     
-0011   2???           00098     CALL SEG7
-                      00099     
-                      00100     
-0012   2???           00101     GOTO    LOOP                         ; loop forever
-                      00102     
-                      00103 ;####SETUPS####
-0013                  00104 CONFIG_IO:
-0013   1683 1703      00105     BANKSEL ANSEL
+0014   2???           00092     CALL    SEL_RECIBIR
+0015   2???           00093     CALL    SEL_ENVIO
+0016   2???           00094     CALL    SEL_RECIBIR
+                      00095     ;CALL    RECIBIR
+                      00096 
+                      00097 ;###########################################
+                      00098     ;CALL    DELAY_AQ
+                      00099     ;CALL    RECIBIR2 
+0017   08??           00100     MOVFW XVIENE
+0018   00??           00101     MOVWF DECODE
+0019   00??           00102     MOVWF DECODE2
+001A   08??           00103     MOVFW YVIENE
+001B   00??           00104     MOVWF DECODE3
+001C   00??           00105     MOVWF DECODE4
+                      00106 ;########################################    
+001D   2???           00107     CALL SEG7
+001E   2???           00108     CALL    SEL_RECIBIR
+001F   2???           00109     GOTO    LOOP                         ; loop forever
+                      00110     
+                      00111 ;####SETUPS####
+0020                  00112 CONFIG_IO:
+0020   1683 1703      00113     BANKSEL ANSEL
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0015   0188           00106     CLRF    ANSEL
+0022   0188           00114     CLRF    ANSEL
 Message[305]: Using default destination of 1 (file).
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0016   0988           00107     COMF    ANSEL
-0017   1683 1303      00108     BANKSEL TRISA
+0023   0988           00115     COMF    ANSEL
+0024   1683 1303      00116     BANKSEL TRISA
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0019   0185           00109     CLRF    TRISA
+0026   0185           00117     CLRF    TRISA
 Message[305]: Using default destination of 1 (file).
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-001A   0985           00110     COMF    TRISA
+0027   0985           00118     COMF    TRISA
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-001B   0188           00111     CLRF    TRISD
+0028   0188           00119     CLRF    TRISD
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-001C   0186           00112     CLRF    TRISB
+0029   0186           00120     CLRF    TRISB
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-001D   0187           00113     CLRF    TRISC
-001E   1283 1303      00114     BANKSEL PORTD
-0020   0185           00115     CLRF    PORTA
-0021   0188           00116     CLRF    PORTD
-0022   0186           00117     CLRF    PORTB
-0023   0187           00118     CLRF    PORTC
-0024   0008           00119     RETURN
-                      00120     
-0025                  00121 CONFIG_ADC:
-0025   1683 1303      00122     BANKSEL ADCON1
-0027   3000           00123     MOVLW   B'00000000'
+002A   0187           00121     CLRF    TRISC
+002B   1283 1303      00122     BANKSEL PORTD
+002D   0185           00123     CLRF    PORTA
+002E   0188           00124     CLRF    PORTD
+002F   0186           00125     CLRF    PORTB
+0030   0187           00126     CLRF    PORTC
+0031   0008           00127     RETURN
+                      00128     
+0032                  00129 CONFIG_ADC:
+0032   1683 1303      00130     BANKSEL ADCON1
+0034   3000           00131     MOVLW   B'00000000'
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0028   009F           00124     MOVWF   ADCON1
-0029   1283 1303      00125     BANKSEL ADCON0
-002B   3041           00126     MOVLW   B'01000001'
-002C   009F           00127     MOVWF   ADCON0
-002D   0008           00128     RETURN
-                      00129     
-002E                  00130 CONFIG_ADC2:
-002E   1683 1303      00131     BANKSEL ADCON1
-0030   3000           00132     MOVLW   B'00000000'
-Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0031   009F           00133     MOVWF   ADCON1
-MPASM 5.77                    ETCHSKETCH.ASM   10-25-2020  19:57:10         PAGE  4
+0035   009F           00132     MOVWF   ADCON1
+0036   1283 1303      00133     BANKSEL ADCON0
+0038   3041           00134     MOVLW   B'01000001'
+MPASM 5.77                    ETCHSKETCH.ASM   10-26-2020  0:39:43         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-0032   1283 1303      00134     BANKSEL ADCON0
-0034   3049           00135     MOVLW   B'01001001'
-0035   009F           00136     MOVWF   ADCON0
-0036   0008           00137     RETURN
-                      00138     
-0037                  00139 CONFIG_TXRX:
-0037   1683 1303      00140     BANKSEL TXSTA
+0039   009F           00135     MOVWF   ADCON0
+003A   0008           00136     RETURN
+                      00137     
+003B                  00138 CONFIG_ADC2:
+003B   1683 1303      00139     BANKSEL ADCON1
+003D   3000           00140     MOVLW   B'00000000'
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0039   1218           00141     BCF     TXSTA, SYNC
+003E   009F           00141     MOVWF   ADCON1
+003F   1283 1303      00142     BANKSEL ADCON0
+0041   3049           00143     MOVLW   B'01001001'
+0042   009F           00144     MOVWF   ADCON0
+0043   0008           00145     RETURN
+                      00146     
+0044                  00147 CONFIG_TXRX:
+0044   1683 1303      00148     BANKSEL TXSTA
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-003A   1518           00142     BSF     TXSTA, BRGH
-003B   1683 1703      00143     BANKSEL BAUDCTL
+0046   1218           00149     BCF     TXSTA, SYNC
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-003D   1187           00144     BCF     BAUDCTL, BRG16
-003E   1683 1303      00145     BANKSEL SPBRG
-0040   3019           00146     MOVLW   .25
+0047   1518           00150     BSF     TXSTA, BRGH
+0048   1683 1703      00151     BANKSEL BAUDCTL
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0041   0099           00147     MOVWF   SPBRG
+004A   1187           00152     BCF     BAUDCTL, BRG16
+004B   1683 1303      00153     BANKSEL SPBRG
+004D   3019           00154     MOVLW   .25
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0042   019A           00148     CLRF    SPBRGH
-0043   1283 1303      00149     BANKSEL RCSTA
-0045   1798           00150     BSF     RCSTA, SPEN
-0046   1318           00151     BCF     RCSTA, RX9
-0047   1618           00152     BSF     RCSTA, CREN
-0048   1683 1303      00153     BANKSEL TXSTA
+004E   0099           00155     MOVWF   SPBRG
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-004A   1698           00154     BSF     TXSTA, TXEN
-004B   1283 1303      00155     BANKSEL PORTA
-004D   0008           00156     RETURN
-                      00157     
-004E                  00158 DELAY_AQ:
-004E   0000           00159     NOP
-004F   0000           00160     NOP
-0050   0000           00161     NOP
-0051   0000           00162     NOP
-0052   0000           00163     NOP
-0053   0000           00164     NOP
-0054   0000           00165     NOP
-0055   0000           00166     NOP
-0056   0000           00167     NOP
-0057   0000           00168     NOP
-0058   0008           00169     RETURN
-                      00170     
-0059                  00171 DELAY_SMALL
-0059   300A           00172     MOVLW .10
-005A   08??           00173     MOVFW CONT1
-005B   0B??           00174     DECFSZ CONT1, F
-005C   2???           00175                GOTO $-1 ;IR A PC - 1, REGRESAR A DECFSZ
-005D   0008           00176  RETURN
-                      00177  
-005E                  00178 DELAY_MULTPLX
-005E   300A           00179     MOVLW .10
-005F   00??           00180     MOVWF CONT2
-MPASM 5.77                    ETCHSKETCH.ASM   10-25-2020  19:57:10         PAGE  5
+004F   019A           00156     CLRF    SPBRGH
+0050   1283 1303      00157     BANKSEL RCSTA
+0052   1798           00158     BSF     RCSTA, SPEN
+0053   1318           00159     BCF     RCSTA, RX9
+0054   1618           00160     BSF     RCSTA, CREN
+0055   1683 1303      00161     BANKSEL TXSTA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0057   1698           00162     BSF     TXSTA, TXEN
+0058   1283 1303      00163     BANKSEL PORTA
+005A   0008           00164     RETURN
+                      00165     
+005B                  00166 DELAY_AQ:
+005B   0000           00167     NOP
+005C   0000           00168     NOP
+005D   0000           00169     NOP
+005E   0000           00170     NOP
+005F   0000           00171     NOP
+0060   0000           00172     NOP
+0061   0000           00173     NOP
+0062   0000           00174     NOP
+0063   0000           00175     NOP
+0064   0000           00176     NOP
+0065   0008           00177     RETURN
+                      00178     
+0066                  00179 DELAY_SMALL
+0066   300A           00180     MOVLW .10
+MPASM 5.77                    ETCHSKETCH.ASM   10-26-2020  0:39:43         PAGE  5
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-0060                  00181 CONFIG1:    
-0060   2???           00182     CALL DELAY_SMALL
-0061   0B??           00183     DECFSZ CONT2, F
-0062   2???           00184     GOTO CONFIG1
-0063   0008           00185     RETURN
-                      00186     
-                      00187 
-0064                  00188 RECIBIR:
-0064   1E8C           00189     BTFSS   PIR1, RCIF
-0065   0008           00190     RETURN
-0066   081A           00191     MOVF    RCREG, W
-0067   00??           00192     MOVWF   DECODE
-0068   00??           00193     MOVWF   DECODE2
-0069   0008           00194     RETURN
-                      00195     
-006A                  00196 ENVIO:
-006A   1E0C           00197     BTFSS   PIR1, TXIF
-006B   0008           00198     RETURN
-006C   08??           00199     MOVFW   ADC_VAL
-006D   0099           00200     MOVWF   TXREG
-006E   0008           00201     RETURN
-                      00202     
-006F                  00203 RECIBIR2:
-006F   1E8C           00204     BTFSS   PIR1, RCIF
-0070   0008           00205     RETURN
-0071   081A           00206     MOVF    RCREG, W
-0072   00??           00207     MOVWF   DECODE3
-0073   00??           00208     MOVWF   DECODE4
-0074   0008           00209     RETURN
+0067   08??           00181     MOVFW CONT1
+0068   0B??           00182     DECFSZ CONT1, F
+0069   2???           00183                GOTO $-1 ;IR A PC - 1, REGRESAR A DECFSZ
+006A   0008           00184  RETURN
+                      00185  
+006B                  00186 DELAY_MULTPLX
+006B   300A           00187     MOVLW .10
+006C   00??           00188     MOVWF CONT2
+006D                  00189 CONFIG1:    
+006D   2???           00190     CALL DELAY_SMALL
+006E   0B??           00191     DECFSZ CONT2, F
+006F   2???           00192     GOTO CONFIG1
+0070   0008           00193     RETURN
+                      00194     
+0071                  00195 SEL_RECIBIR:
+0071   1800           00196     BTFSC   BAND2, 0
+0072   2???           00197     GOTO    RECIBIR
+0073   1880           00198     BTFSC   BAND2, 1
+0074   2???           00199     GOTO    RECIBIR2
+0075   0008           00200     RETURN
+                      00201     
+0076                  00202 RECIBIR:
+0076   1000           00203     BCF     BAND2, 0
+0077   1480           00204     BSF     BAND2, 1
+0078   1E8C           00205     BTFSS   PIR1, RCIF
+0079   0008           00206     RETURN
+007A   081A           00207     MOVF    RCREG, W
+007B   00??           00208     MOVWF   XVIENE
+007C   0008           00209     RETURN
                       00210     
-0075                  00211 ENVIO2:
-0075   1E0C           00212     BTFSS   PIR1, TXIF
-0076   0008           00213     RETURN
-0077   08??           00214     MOVFW   ADC_VAL2
-0078   0099           00215     MOVWF   TXREG
-0079   0008           00216     RETURN
+007D                  00211 ENVIO:
+007D   1E0C           00212     BTFSS   PIR1, TXIF
+007E   0008           00213     RETURN
+007F   08??           00214     MOVFW   ADC_VAL
+0080   0099           00215     MOVWF   TXREG
+0081   0008           00216     RETURN
                       00217     
-007A                  00218 SEG7:
-007A   0186           00219     CLRF PORTB
-007B   1488           00220     BSF PORTD, 1
-007C   1108           00221     BCF PORTD, 2
-007D   1188           00222     BCF PORTD, 3
-007E   1208           00223     BCF PORTD, 4
-007F   08??           00224     MOVF DECODE, W
-0080   2???           00225     CALL TABLA_7SEG
-0081   0086           00226     MOVWF PORTB
-0082   2???           00227     CALL DELAY_MULTPLX
-                      00228     
-0083   0186           00229     CLRF PORTB
-0084   1088           00230     BCF PORTD, 1
-0085   1508           00231     BSF PORTD, 2
-0086   1188           00232     BCF PORTD, 3
-0087   1208           00233     BCF PORTD, 4
-MPASM 5.77                    ETCHSKETCH.ASM   10-25-2020  19:57:10         PAGE  6
+0082                  00218 RECIBIR2:
+0082   1400           00219     BSF     BAND2, 0
+0083   1080           00220     BCF     BAND2, 1
+0084   1E8C           00221     BTFSS   PIR1, RCIF
+0085   0008           00222     RETURN
+0086   081A           00223     MOVF    RCREG, W
+0087   00??           00224     MOVWF   YVIENE
+0088   0008           00225     RETURN
+                      00226     
+0089                  00227 ENVIO2:
+0089   1E0C           00228     BTFSS   PIR1, TXIF
+008A   0008           00229     RETURN
+008B   08??           00230     MOVFW   ADC_VAL2
+008C   0099           00231     MOVWF   TXREG
+008D   0008           00232     RETURN
+                      00233     
+MPASM 5.77                    ETCHSKETCH.ASM   10-26-2020  0:39:43         PAGE  6
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-0088   0E??           00234     SWAPF DECODE2, W
-0089   00??           00235     MOVWF DECODE2
-008A   2???           00236     CALL TABLA_7SEG
-008B   0086           00237     MOVWF PORTB
-008C   2???           00238     CALL DELAY_MULTPLX
-                      00239     
-008D   0186           00240     CLRF PORTB
-008E   1088           00241     BCF PORTD, 1
-008F   1108           00242     BCF PORTD, 2
-0090   1588           00243     BSF PORTD, 3
-0091   1208           00244     BCF PORTD, 4
-0092   08??           00245     MOVF DECODE3, W
-0093   2???           00246     CALL TABLA_7SEG
-0094   0086           00247     MOVWF PORTB
-0095   2???           00248     CALL DELAY_MULTPLX
-                      00249     
-0096   0186           00250     CLRF PORTB
-0097   1088           00251     BCF PORTD, 1
-0098   1108           00252     BCF PORTD, 2
-0099   1188           00253     BCF PORTD, 3
-009A   1608           00254     BSF PORTD, 4
-009B   0E??           00255     SWAPF DECODE4, W
-009C   00??           00256     MOVWF DECODE4
-009D   2???           00257     CALL TABLA_7SEG
-009E   0086           00258     MOVWF PORTB
-009F   2???           00259     CALL DELAY_MULTPLX
-                      00260     
-00A0   0008           00261     RETURN
-                      00262     
-00A1                  00263 CALC_X:
-00A1   30BF           00264     MOVLW   .191
-00A2   02??           00265     SUBWF   ADC_VAL, W
-00A3   1C03           00266     BTFSS   STATUS, C
-00A4   2???           00267     GOTO    CALC2_X
-00A5   3034           00268     MOVLW   0X34
-00A6   00??           00269     MOVWF   XCOR
-00A7   0008           00270     RETURN
-00A8                  00271 CALC2_X:
-00A8   308F           00272     MOVLW   .143
-00A9   02??           00273     SUBWF   ADC_VAL, W
-00AA   1C03           00274     BTFSS   STATUS, C
-00AB   2???           00275     GOTO    CALC3_X
-00AC   3033           00276     MOVLW   0X33
-00AD   00??           00277     MOVWF   XCOR
-00AE   0008           00278     RETURN
-00AF                  00279 CALC3_X:
-00AF   306F           00280     MOVLW   .111
-00B0   02??           00281     SUBWF   ADC_VAL, W
-00B1   1C03           00282     BTFSS   STATUS, C
-00B2   2???           00283     GOTO    CALC4_X
-00B3   3032           00284     MOVLW   0X32
-00B4   00??           00285     MOVWF   XCOR
-00B5   0008           00286     RETURN
-MPASM 5.77                    ETCHSKETCH.ASM   10-25-2020  19:57:10         PAGE  7
+008E                  00234 SEG7:
+008E   0186           00235     CLRF PORTB
+008F   1488           00236     BSF PORTD, 1
+0090   1108           00237     BCF PORTD, 2
+0091   1188           00238     BCF PORTD, 3
+0092   1208           00239     BCF PORTD, 4
+0093   08??           00240     MOVF DECODE, W
+0094   2???           00241     CALL TABLA_7SEG
+0095   0086           00242     MOVWF PORTB
+0096   2???           00243     CALL DELAY_MULTPLX
+                      00244     
+0097   0186           00245     CLRF PORTB
+0098   1088           00246     BCF PORTD, 1
+0099   1508           00247     BSF PORTD, 2
+009A   1188           00248     BCF PORTD, 3
+009B   1208           00249     BCF PORTD, 4
+009C   0E??           00250     SWAPF DECODE2, W
+009D   00??           00251     MOVWF DECODE2
+009E   2???           00252     CALL TABLA_7SEG
+009F   0086           00253     MOVWF PORTB
+00A0   2???           00254     CALL DELAY_MULTPLX
+                      00255     
+00A1   0186           00256     CLRF PORTB
+00A2   1088           00257     BCF PORTD, 1
+00A3   1108           00258     BCF PORTD, 2
+00A4   1588           00259     BSF PORTD, 3
+00A5   1208           00260     BCF PORTD, 4
+00A6   08??           00261     MOVF DECODE3, W
+00A7   2???           00262     CALL TABLA_7SEG
+00A8   0086           00263     MOVWF PORTB
+00A9   2???           00264     CALL DELAY_MULTPLX
+                      00265     
+00AA   0186           00266     CLRF PORTB
+00AB   1088           00267     BCF PORTD, 1
+00AC   1108           00268     BCF PORTD, 2
+00AD   1188           00269     BCF PORTD, 3
+00AE   1608           00270     BSF PORTD, 4
+00AF   0E??           00271     SWAPF DECODE4, W
+00B0   00??           00272     MOVWF DECODE4
+00B1   2???           00273     CALL TABLA_7SEG
+00B2   0086           00274     MOVWF PORTB
+00B3   2???           00275     CALL DELAY_MULTPLX
+                      00276     
+00B4   0008           00277     RETURN
+                      00278     
+                      00279     
+00B5                  00280 LEC_POTX:
+00B5   2???           00281     CALL    CONFIG_ADC
+00B6   1283 1303      00282     BANKSEL PORTA
+00B8   2???           00283     CALL    DELAY_AQ
+00B9   149F           00284     BSF     ADCON0, GO
+00BA   189F           00285     BTFSC   ADCON0, GO
+00BB   2???           00286     GOTO    $-1
+MPASM 5.77                    ETCHSKETCH.ASM   10-26-2020  0:39:43         PAGE  7
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-00B6                  00287 CALC4_X:
-00B6   303F           00288     MOVLW   .63
-00B7   02??           00289     SUBWF   ADC_VAL, W
-00B8   1C03           00290     BTFSS   STATUS, C
-00B9   2???           00291     GOTO    CALC5_X
-00BA   3031           00292     MOVLW   0X31
-00BB   00??           00293     MOVWF   XCOR
-00BC   0008           00294     RETURN
-00BD                  00295 CALC5_X:
-00BD   3030           00296     MOVLW   0X30
-00BE   00??           00297     MOVWF   XCOR
-00BF   0008           00298     RETURN
-                      00299     
-00C0                  00300 CALC_Y:
-00C0   30BF           00301     MOVLW   .191
-00C1   02??           00302     SUBWF   ADC_VAL2, W
-00C2   1C03           00303     BTFSS   STATUS, C
-00C3   2???           00304     GOTO    CALC2_Y
-00C4   3034           00305     MOVLW   0X34
-00C5   00??           00306     MOVWF   YCOR
-00C6   0008           00307     RETURN
-00C7                  00308 CALC2_Y:
-00C7   308F           00309     MOVLW   .143
-00C8   02??           00310     SUBWF   ADC_VAL2, W
-00C9   1C03           00311     BTFSS   STATUS, C
-00CA   2???           00312     GOTO    CALC3_Y
-00CB   3033           00313     MOVLW   0X33
-00CC   00??           00314     MOVWF   YCOR
-00CD   0008           00315     RETURN
-00CE                  00316 CALC3_Y:
-00CE   306F           00317     MOVLW   .111
-00CF   02??           00318     SUBWF   ADC_VAL2, W
-00D0   1C03           00319     BTFSS   STATUS, C
-00D1   2???           00320     GOTO    CALC4_Y
-00D2   3032           00321     MOVLW   0X32
-00D3   00??           00322     MOVWF   YCOR
-00D4   0008           00323     RETURN
-00D5                  00324 CALC4_Y:
-00D5   303F           00325     MOVLW   .63
-00D6   02??           00326     SUBWF   ADC_VAL2, W
-00D7   1C03           00327     BTFSS   STATUS, C
-00D8   2???           00328     GOTO    CALC5_Y
-00D9   3031           00329     MOVLW   0X31
-00DA   00??           00330     MOVWF   YCOR
-00DB   0008           00331     RETURN
-00DC                  00332 CALC5_Y:
-00DC   3030           00333     MOVLW   0X30
-00DD   00??           00334     MOVWF   YCOR
-00DE   0008           00335     RETURN
-                      00336     
-00DF                  00337 LEC_POTX:
-00DF   2???           00338     CALL    CONFIG_ADC
-00E0   1283 1303      00339     BANKSEL PORTA
-MPASM 5.77                    ETCHSKETCH.ASM   10-25-2020  19:57:10         PAGE  8
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
-
-00E2   2???           00340     CALL    DELAY_AQ
-00E3   149F           00341     BSF     ADCON0, GO
-00E4   189F           00342     BTFSC   ADCON0, GO
-00E5   2???           00343     GOTO    $-1
-00E6   081E           00344     MOVF    ADRESH, W
-00E7   00??           00345     MOVWF   ADC_VAL
-                      00346     ;MOVWF   DECODE
-                      00347     ;MOVWF   DECODE2
-00E8   0008           00348     RETURN
-                      00349     
-00E9                  00350 LEC_POTY:
-00E9   2???           00351     CALL    CONFIG_ADC2
-00EA   1283 1303      00352     BANKSEL PORTA
-00EC   2???           00353     CALL    DELAY_AQ
-00ED   149F           00354     BSF     ADCON0, GO
-00EE   189F           00355     BTFSC   ADCON0, GO
-00EF   2???           00356     GOTO    $-1
-00F0   081E           00357     MOVF    ADRESH, W
-00F1   00??           00358     MOVWF   ADC_VAL2
-                      00359     ;MOVWF   DECODE
-                      00360     ;MOVWF   DECODE2
-00F2   0008           00361     RETURN
-                      00362     
-00F3                  00363 SEL_ENVIO:
-00F3   1800           00364     BTFSC   BAND, 0
-00F4   2???           00365     GOTO    ENVIO1
-00F5   1880           00366     BTFSC   BAND, 1
-00F6   2???           00367     GOTO    ENVIO3
-                      00368     ;BTFSC   BAND, 2
-                      00369     ;GOTO    ENVIO4
-00F7   0008           00370     RETURN
-00F8                  00371 ENVIO4:
-00F8   1100           00372     BCF     BAND, 2
-00F9   1400           00373     BSF     BAND, 0
-00FA   1E0C           00374     BTFSS   PIR1, TXIF
-00FB   0008           00375     RETURN
-                      00376     ;MOVFW   ADC_VAL
-00FC   300A           00377     MOVLW   0xA
-00FD   0099           00378     MOVWF   TXREG
-00FE   0008           00379     RETURN
-00FF                  00380 ENVIO3:
-00FF   1080           00381     BCF     BAND, 1
-0100   1400           00382     BSF     BAND, 0
-0101   1E0C           00383     BTFSS   PIR1, TXIF
-0102   0008           00384     RETURN
-0103   08??           00385     MOVFW   ADC_VAL
-0104   0099           00386     MOVWF   TXREG
-0105   0008           00387     RETURN
-0106                  00388 ENVIO1:
-0106   1000           00389     BCF     BAND, 0
-0107   1480           00390     BSF     BAND, 1
-0108   1E0C           00391     BTFSS   PIR1, TXIF
-0109   0008           00392     RETURN
-MPASM 5.77                    ETCHSKETCH.ASM   10-25-2020  19:57:10         PAGE  9
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
-
-010A   08??           00393     MOVFW   ADC_VAL2
-010B   0099           00394     MOVWF   TXREG
-010C   0008           00395     RETURN
-                      00396     
-20D4 3FFF             00397     END
-MPASM 5.77                    ETCHSKETCH.ASM   10-25-2020  19:57:10         PAGE 10
+00BC   081E           00287     MOVF    ADRESH, W
+00BD   00??           00288     MOVWF   ADC_VAL
+00BE   0008           00289     RETURN
+                      00290     
+00BF                  00291 LEC_POTY:
+00BF   2???           00292     CALL    CONFIG_ADC2
+00C0   1283 1303      00293     BANKSEL PORTA
+00C2   2???           00294     CALL    DELAY_AQ
+00C3   149F           00295     BSF     ADCON0, GO
+00C4   189F           00296     BTFSC   ADCON0, GO
+00C5   2???           00297     GOTO    $-1
+00C6   081E           00298     MOVF    ADRESH, W
+00C7   00??           00299     MOVWF   ADC_VAL2
+00C8   0008           00300     RETURN
+                      00301     
+00C9                  00302 SEL_ENVIO:
+00C9   1800           00303     BTFSC   BAND, 0
+00CA   2???           00304     GOTO    ENVIO1
+00CB   1880           00305     BTFSC   BAND, 1
+00CC   2???           00306     GOTO    ENVIO3
+00CD   0008           00307     RETURN
+00CE                  00308 ENVIO4:
+00CE   1100           00309     BCF     BAND, 2
+00CF   1400           00310     BSF     BAND, 0
+00D0   1E0C           00311     BTFSS   PIR1, TXIF
+00D1   0008           00312     RETURN
+                      00313     ;MOVFW   ADC_VAL
+00D2   300A           00314     MOVLW   0xA
+00D3   0099           00315     MOVWF   TXREG
+00D4   0008           00316     RETURN
+00D5                  00317 ENVIO3:
+00D5   1080           00318     BCF     BAND, 1
+00D6   1400           00319     BSF     BAND, 0
+00D7   1E0C           00320     BTFSS   PIR1, TXIF
+00D8   0008           00321     RETURN
+00D9   08??           00322     MOVFW   ADC_VAL
+00DA   0099           00323     MOVWF   TXREG
+00DB   0008           00324     RETURN
+00DC                  00325 ENVIO1:
+00DC   1000           00326     BCF     BAND, 0
+00DD   1480           00327     BSF     BAND, 1
+00DE   1E0C           00328     BTFSS   PIR1, TXIF
+00DF   0008           00329     RETURN
+00E0   08??           00330     MOVFW   ADC_VAL2
+00E1   0099           00331     MOVWF   TXREG
+00E2   0008           00332     RETURN
+                      00333     
+20D4 3FFF             00334     END
+MPASM 5.77                    ETCHSKETCH.ASM   10-26-2020  0:39:43         PAGE  8
 
 
 SYMBOL TABLE
@@ -522,6 +447,7 @@ ANS9                              00000001
 ANSEL                             00000188
 ANSELH                            00000189
 BAND                              0000000D
+BAND2                             0000000E
 BAUDCTL                           00000187
 BCLIE                             00000003
 BCLIF                             00000003
@@ -539,13 +465,13 @@ BRG2                              00000002
 BRG3                              00000003
 BRG4                              00000004
 BRG5                              00000005
-BRG6                              00000006
-MPASM 5.77                    ETCHSKETCH.ASM   10-25-2020  19:57:10         PAGE 11
+MPASM 5.77                    ETCHSKETCH.ASM   10-26-2020  0:39:43         PAGE  9
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+BRG6                              00000006
 BRG7                              00000007
 BRG8                              00000000
 BRG9                              00000001
@@ -574,16 +500,6 @@ C2R                               00000002
 C2REN                             00000004
 C2RSEL                            00000004
 C2SYNC                            00000000
-CALC2_X                           000000A8
-CALC2_Y                           000000C7
-CALC3_X                           000000AF
-CALC3_Y                           000000CE
-CALC4_X                           000000B6
-CALC4_Y                           000000D5
-CALC5_X                           000000BD
-CALC5_Y                           000000DC
-CALC_X                            000000A1
-CALC_Y                            000000C0
 CCP1CON                           00000017
 CCP1IE                            00000002
 CCP1IF                            00000002
@@ -599,12 +515,6 @@ CCP2IF                            00000000
 CCP2M0                            00000000
 CCP2M1                            00000001
 CCP2M2                            00000002
-MPASM 5.77                    ETCHSKETCH.ASM   10-25-2020  19:57:10         PAGE 12
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 CCP2M3                            00000003
 CCP2X                             00000005
 CCP2Y                             00000004
@@ -614,6 +524,12 @@ CCPR1L                            00000015
 CCPR2                             0000001B
 CCPR2H                            0000001C
 CCPR2L                            0000001B
+MPASM 5.77                    ETCHSKETCH.ASM   10-26-2020  0:39:43         PAGE 10
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 CHS0                              00000002
 CHS1                              00000003
 CHS2                              00000004
@@ -623,11 +539,11 @@ CKP                               00000004
 CM1CON0                           00000107
 CM2CON0                           00000108
 CM2CON1                           00000109
-CONFIG1                           00000060
-CONFIG_ADC                        00000025
-CONFIG_ADC2                       0000002E
-CONFIG_IO                         00000013
-CONFIG_TXRX                       00000037
+CONFIG1                           0000006D
+CONFIG_ADC                        00000032
+CONFIG_ADC2                       0000003B
+CONFIG_IO                         00000020
+CONFIG_TXRX                       00000044
 CONT1                             00000006
 CONT2                             00000007
 CREN                              00000004
@@ -643,9 +559,9 @@ DECODE                            00000002
 DECODE2                           00000003
 DECODE3                           00000004
 DECODE4                           00000005
-DELAY_AQ                          0000004E
-DELAY_MULTPLX                     0000005E
-DELAY_SMALL                       00000059
+DELAY_AQ                          0000005B
+DELAY_MULTPLX                     0000006B
+DELAY_SMALL                       00000066
 D_A                               00000005
 D_NOT_A                           00000005
 ECCPAS                            0000009C
@@ -658,22 +574,22 @@ EEADRH                            0000010F
 EECON1                            0000018C
 EECON2                            0000018D
 EEDAT                             0000010C
-MPASM 5.77                    ETCHSKETCH.ASM   10-25-2020  19:57:10         PAGE 13
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 EEDATA                            0000010C
 EEDATH                            0000010E
 EEIE                              00000004
 EEIF                              00000004
 EEPGD                             00000007
-ENVIO                             0000006A
-ENVIO1                            00000106
-ENVIO2                            00000075
-ENVIO3                            000000FF
-ENVIO4                            000000F8
+ENVIO                             0000007D
+ENVIO1                            000000DC
+ENVIO2                            00000089
+ENVIO3                            000000D5
+MPASM 5.77                    ETCHSKETCH.ASM   10-26-2020  0:39:43         PAGE 11
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ENVIO4                            000000CE
 F                                 00000001
 FERR                              00000002
 FSR                               00000004
@@ -706,9 +622,9 @@ IRCF0                             00000004
 IRCF1                             00000005
 IRCF2                             00000006
 IRP                               00000007
-LEC_POTX                          000000DF
-LEC_POTY                          000000E9
-LOOP                              00000007
+LEC_POTX                          000000B5
+LEC_POTY                          000000BF
+LOOP                              0000000F
 LTS                               00000001
 MC1OUT                            00000007
 MC2OUT                            00000006
@@ -717,12 +633,6 @@ MSK0                              00000000
 MSK1                              00000001
 MSK2                              00000002
 MSK3                              00000003
-MPASM 5.77                    ETCHSKETCH.ASM   10-25-2020  19:57:10         PAGE 14
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 MSK4                              00000004
 MSK5                              00000005
 MSK6                              00000006
@@ -732,6 +642,12 @@ NOT_ADDRESS                       00000005
 NOT_BO                            00000000
 NOT_BOR                           00000000
 NOT_DONE                          00000001
+MPASM 5.77                    ETCHSKETCH.ASM   10-26-2020  0:39:43         PAGE 12
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 NOT_PD                            00000003
 NOT_POR                           00000001
 NOT_RBPU                          00000007
@@ -776,12 +692,6 @@ PR2                               00000092
 PRSEN                             00000007
 PS0                               00000000
 PS1                               00000001
-MPASM 5.77                    ETCHSKETCH.ASM   10-25-2020  19:57:10         PAGE 15
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 PS2                               00000002
 PSA                               00000003
 PSSAC0                            00000002
@@ -791,6 +701,12 @@ PSSBD1                            00000001
 PSTRCON                           0000009D
 PULSR                             00000002
 PULSS                             00000003
+MPASM 5.77                    ETCHSKETCH.ASM   10-26-2020  0:39:43         PAGE 13
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 PWM1CON                           0000009B
 R                                 00000002
 RA0                               00000000
@@ -835,12 +751,6 @@ RD2                               00000002
 RD3                               00000003
 RD4                               00000004
 RD5                               00000005
-MPASM 5.77                    ETCHSKETCH.ASM   10-25-2020  19:57:10         PAGE 16
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 RD6                               00000006
 RD7                               00000007
 RE0                               00000000
@@ -848,8 +758,14 @@ RE1                               00000001
 RE2                               00000002
 RE3                               00000003
 READ_WRITE                        00000002
-RECIBIR                           00000064
-RECIBIR2                          0000006F
+RECIBIR                           00000076
+RECIBIR2                          00000082
+MPASM 5.77                    ETCHSKETCH.ASM   10-26-2020  0:39:43         PAGE 14
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 RP0                               00000005
 RP1                               00000006
 RSEN                              00000001
@@ -861,8 +777,9 @@ S                                 00000003
 SBOREN                            00000004
 SCKP                              00000004
 SCS                               00000000
-SEG7                              0000007A
-SEL_ENVIO                         000000F3
+SEG7                              0000008E
+SEL_ENVIO                         000000C9
+SEL_RECIBIR                       00000071
 SEN                               00000000
 SENDB                             00000003
 SETUP                             00000000
@@ -894,12 +811,6 @@ STRA                              00000000
 STRB                              00000001
 STRC                              00000002
 STRD                              00000003
-MPASM 5.77                    ETCHSKETCH.ASM   10-25-2020  19:57:10         PAGE 17
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 STRSYNC                           00000004
 SWDTEN                            00000000
 SYNC                              00000004
@@ -908,6 +819,12 @@ T0IE                              00000005
 T0IF                              00000002
 T0SE                              00000004
 T1CKPS0                           00000004
+MPASM 5.77                    ETCHSKETCH.ASM   10-26-2020  0:39:43         PAGE 15
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 T1CKPS1                           00000005
 T1CON                             00000010
 T1GINV                            00000007
@@ -953,12 +870,6 @@ TRISB0                            00000000
 TRISB1                            00000001
 TRISB2                            00000002
 TRISB3                            00000003
-MPASM 5.77                    ETCHSKETCH.ASM   10-25-2020  19:57:10         PAGE 18
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 TRISB4                            00000004
 TRISB5                            00000005
 TRISB6                            00000006
@@ -967,6 +878,12 @@ TRISC                             00000087
 TRISC0                            00000000
 TRISC1                            00000001
 TRISC2                            00000002
+MPASM 5.77                    ETCHSKETCH.ASM   10-26-2020  0:39:43         PAGE 16
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 TRISC3                            00000003
 TRISC4                            00000004
 TRISC5                            00000005
@@ -1012,12 +929,6 @@ VR1                               00000001
 VR2                               00000002
 VR3                               00000003
 VRCON                             00000097
-MPASM 5.77                    ETCHSKETCH.ASM   10-25-2020  19:57:10         PAGE 19
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 VREN                              00000007
 VROE                              00000006
 VRR                               00000005
@@ -1026,6 +937,12 @@ W                                 00000000
 WCOL                              00000007
 WDTCON                            00000105
 WDTPS0                            00000001
+MPASM 5.77                    ETCHSKETCH.ASM   10-26-2020  0:39:43         PAGE 17
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 WDTPS1                            00000002
 WDTPS2                            00000003
 WDTPS3                            00000004
@@ -1045,7 +962,9 @@ WUE                               00000001
 W_TEMP                            00000008
 XCOR                              0000000A
 XCOR2                             0000000B
+XVIENE                            0000000F
 YCOR                              0000000C
+YVIENE                            00000010
 Z                                 00000002
 _BOR21V                           00003EFF
 _BOR40V                           00003FFF
@@ -1071,18 +990,18 @@ _DEVID1                           00002006
 _EC_OSC                           00003FFB
 _EXTRC                            00003FFF
 _EXTRCIO                          00003FFE
-MPASM 5.77                    ETCHSKETCH.ASM   10-25-2020  19:57:10         PAGE 20
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 _EXTRC_OSC_CLKOUT                 00003FFF
 _EXTRC_OSC_NOCLKOUT               00003FFE
 _FCMEN_OFF                        000037FF
 _FCMEN_ON                         00003FFF
 _FOSC_EC                          00003FFB
 _FOSC_EXTRC_CLKOUT                00003FFF
+MPASM 5.77                    ETCHSKETCH.ASM   10-26-2020  0:39:43         PAGE 18
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 _FOSC_EXTRC_NOCLKOUT              00003FFE
 _FOSC_HS                          00003FFA
 _FOSC_INTRC_CLKOUT                00003FFD
@@ -1103,9 +1022,9 @@ _INTRC_OSC_NOCLKOUT               00003FFC
 _LP_OSC                           00003FF8
 _LVP_OFF                          00002FFF
 _LVP_ON                           00003FFF
-_MAIN_PROG_005C                   0000005C
-_MAIN_PROG_00E5                   000000E5
-_MAIN_PROG_00EF                   000000EF
+_MAIN_PROG_0069                   00000069
+_MAIN_PROG_00BB                   000000BB
+_MAIN_PROG_00C5                   000000C5
 _MCLRE_OFF                        00003FDF
 _MCLRE_ON                         00003FFF
 _PWRTE_OFF                        00003FFF

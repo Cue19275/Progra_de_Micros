@@ -31,6 +31,9 @@ XCOR	RES 1
 XCOR2	RES 1
 YCOR	RES 1
 BAND	RES 1
+BAND2	RES 1
+XVIENE  RES 1
+YVIENE  RES 1
  
 ;####RESET VECTOR####
 RES_VECT  CODE    0x0000            ; processor reset vector
@@ -66,38 +69,43 @@ SETUP:
     CALL CONFIG_IO
     CALL CONFIG_ADC
     CALL CONFIG_TXRX
+    CLRF DECODE
+    CLRF DECODE2
+    CLRF DECODE3
+    CLRF DECODE4
     CLRF BAND
+    CLRF BAND2
     CLRF XCOR
     CLRF YCOR
+    CLRF XVIENE
+    CLRF YVIENE
     BSF	 BAND, 0
+    BSF	 BAND2, 0
     
 ;####EMPIEZA MAINLOOP####     
 LOOP:
     CALL    LEC_POTX
-    ;CALL    CALC_X
+    CALL    SEL_RECIBIR
     CALL    DELAY_AQ
+    CALL    SEL_RECIBIR
     CALL    LEC_POTY
-    ;CALL    CALC_Y
+    CALL    SEL_RECIBIR
     CALL    SEL_ENVIO
-    ;CALL    ENVIO
+    CALL    SEL_RECIBIR
     ;CALL    RECIBIR
 
 ;###########################################
-    
-    
-    ;CALL    ENVIO2
+    ;CALL    DELAY_AQ
     ;CALL    RECIBIR2 
+    MOVFW XVIENE
+    MOVWF DECODE
+    MOVWF DECODE2
+    MOVFW YVIENE
+    MOVWF DECODE3
+    MOVWF DECODE4
 ;########################################    
-    MOVFW   ADC_VAL
-    MOVWF   DECODE
-    MOVWF   DECODE2
-    MOVFW   ADC_VAL2
-    MOVWF   DECODE3
-    MOVWF   DECODE4
-    
     CALL SEG7
-    
-    
+    CALL    SEL_RECIBIR
     GOTO    LOOP                         ; loop forever
     
 ;####SETUPS####
@@ -184,13 +192,20 @@ CONFIG1:
     GOTO CONFIG1
     RETURN
     
-
+SEL_RECIBIR:
+    BTFSC   BAND2, 0
+    GOTO    RECIBIR
+    BTFSC   BAND2, 1
+    GOTO    RECIBIR2
+    RETURN
+    
 RECIBIR:
+    BCF	    BAND2, 0
+    BSF	    BAND2, 1
     BTFSS   PIR1, RCIF
     RETURN
     MOVF    RCREG, W
-    MOVWF   DECODE
-    MOVWF   DECODE2
+    MOVWF   XVIENE
     RETURN
     
 ENVIO:
@@ -201,11 +216,12 @@ ENVIO:
     RETURN
     
 RECIBIR2:
+    BSF	    BAND2, 0
+    BCF	    BAND2, 1
     BTFSS   PIR1, RCIF
     RETURN
     MOVF    RCREG, W
-    MOVWF   DECODE3
-    MOVWF   DECODE4
+    MOVWF   YVIENE
     RETURN
     
 ENVIO2:
@@ -260,79 +276,6 @@ SEG7:
     
     RETURN
     
-CALC_X:
-    MOVLW   .191
-    SUBWF   ADC_VAL, W
-    BTFSS   STATUS, C
-    GOTO    CALC2_X
-    MOVLW   0X34
-    MOVWF   XCOR
-    RETURN
-CALC2_X:
-    MOVLW   .143
-    SUBWF   ADC_VAL, W
-    BTFSS   STATUS, C
-    GOTO    CALC3_X
-    MOVLW   0X33
-    MOVWF   XCOR
-    RETURN
-CALC3_X:
-    MOVLW   .111
-    SUBWF   ADC_VAL, W
-    BTFSS   STATUS, C
-    GOTO    CALC4_X
-    MOVLW   0X32
-    MOVWF   XCOR
-    RETURN
-CALC4_X:
-    MOVLW   .63
-    SUBWF   ADC_VAL, W
-    BTFSS   STATUS, C
-    GOTO    CALC5_X
-    MOVLW   0X31
-    MOVWF   XCOR
-    RETURN
-CALC5_X:
-    MOVLW   0X30
-    MOVWF   XCOR
-    RETURN
-    
-CALC_Y:
-    MOVLW   .191
-    SUBWF   ADC_VAL2, W
-    BTFSS   STATUS, C
-    GOTO    CALC2_Y
-    MOVLW   0X34
-    MOVWF   YCOR
-    RETURN
-CALC2_Y:
-    MOVLW   .143
-    SUBWF   ADC_VAL2, W
-    BTFSS   STATUS, C
-    GOTO    CALC3_Y
-    MOVLW   0X33
-    MOVWF   YCOR
-    RETURN
-CALC3_Y:
-    MOVLW   .111
-    SUBWF   ADC_VAL2, W
-    BTFSS   STATUS, C
-    GOTO    CALC4_Y
-    MOVLW   0X32
-    MOVWF   YCOR
-    RETURN
-CALC4_Y:
-    MOVLW   .63
-    SUBWF   ADC_VAL2, W
-    BTFSS   STATUS, C
-    GOTO    CALC5_Y
-    MOVLW   0X31
-    MOVWF   YCOR
-    RETURN
-CALC5_Y:
-    MOVLW   0X30
-    MOVWF   YCOR
-    RETURN
     
 LEC_POTX:
     CALL    CONFIG_ADC
@@ -343,8 +286,6 @@ LEC_POTX:
     GOTO    $-1
     MOVF    ADRESH, W
     MOVWF   ADC_VAL
-    ;MOVWF   DECODE
-    ;MOVWF   DECODE2
     RETURN
     
 LEC_POTY:
@@ -356,8 +297,6 @@ LEC_POTY:
     GOTO    $-1
     MOVF    ADRESH, W
     MOVWF   ADC_VAL2
-    ;MOVWF   DECODE
-    ;MOVWF   DECODE2
     RETURN
     
 SEL_ENVIO:
@@ -365,8 +304,6 @@ SEL_ENVIO:
     GOTO    ENVIO1
     BTFSC   BAND, 1
     GOTO    ENVIO3
-    ;BTFSC   BAND, 2
-    ;GOTO    ENVIO4
     RETURN
 ENVIO4:
     BCF     BAND, 2
