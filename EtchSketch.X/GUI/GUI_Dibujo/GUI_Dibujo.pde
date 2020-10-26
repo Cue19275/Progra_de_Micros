@@ -106,7 +106,7 @@ background(255); //Fondo blanco que se sobrepone a lo que ya habia pintado cuand
 }
 
 void azul(){ //Acción de cada boton, modifican las variables de relleno del pincel
-  fill = 200;
+  fill = 0;
  fill2 = 0;
  fill3 = 200; 
 }
