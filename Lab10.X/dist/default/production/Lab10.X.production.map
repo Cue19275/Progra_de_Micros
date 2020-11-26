@@ -1,0 +1,77 @@
+MPLINK 5.08, LINKER
+Linker Map File - Created Thu Nov 12 07:19:55 2020
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                 RES_VECT       code   0x000000    program   0x000026
+                   .cinit    romdata   0x000013    program   0x000004
+                MAIN_PROG       code   0x000015    program   0x0000d8
+.config_2007_BUILD/DEFAULT/PRODUCTION/LABO10.       code   0x002007    program   0x000002
+.config_2008_BUILD/DEFAULT/PRODUCTION/LABO10.       code   0x002008    program   0x000002
+                      GPR      udata   0x000020       data   0x000006
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000080      
+                            0x002007    0x002008      
+            131 out of 8455 program addresses used, program memory utilization is 1%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                 CHCK_B11   0x000021    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                  CONFIG1   0x00007d    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+               CONFIG_ADC   0x000062    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                CONFIG_IO   0x00004f    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                 DELAY_AQ   0x00006b    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+            DELAY_MULTPLX   0x00007b    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+              DELAY_SMALL   0x000076    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+               ESC_EEPROM   0x000027    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                  EXE_B11   0x000023    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+               LEC_EEPROM   0x000040    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                     LOOP   0x000017    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                    SETUP   0x000015    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+               TABLA_7SEG   0x000001    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+          _MAIN_PROG_0005   0x00001a    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+          _MAIN_PROG_0064   0x000079    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                  ADC_VAL   0x000020       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                    CONT1   0x000023       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                    CONT2   0x000024       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                   DECODE   0x000021       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                  DECODE2   0x000022       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                      DIR   0x000025       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+               TABLA_7SEG   0x000001    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                    SETUP   0x000015    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                     LOOP   0x000017    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+          _MAIN_PROG_0005   0x00001a    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                 CHCK_B11   0x000021    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                  EXE_B11   0x000023    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+               ESC_EEPROM   0x000027    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+               LEC_EEPROM   0x000040    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                CONFIG_IO   0x00004f    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+               CONFIG_ADC   0x000062    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                 DELAY_AQ   0x00006b    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+              DELAY_SMALL   0x000076    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+          _MAIN_PROG_0064   0x000079    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+            DELAY_MULTPLX   0x00007b    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                  CONFIG1   0x00007d    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                  ADC_VAL   0x000020       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                   DECODE   0x000021       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                  DECODE2   0x000022       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                    CONT1   0x000023       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                    CONT2   0x000024       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+                      DIR   0x000025       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Lab10.X\Labo10.asm
+
+

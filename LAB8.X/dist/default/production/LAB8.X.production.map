@@ -1,0 +1,75 @@
+MPLINK 5.08, LINKER
+Linker Map File - Created Thu Nov 05 07:06:01 2020
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                 RES_VECT       code   0x000000    program   0x000026
+                   .cinit    romdata   0x000013    program   0x000004
+                MAIN_PROG       code   0x000015    program   0x0000ae
+.config_2007_BUILD/DEFAULT/PRODUCTION/LABO8.O       code   0x002007    program   0x000002
+.config_2008_BUILD/DEFAULT/PRODUCTION/LABO8.O       code   0x002008    program   0x000002
+                      GPR      udata   0x000020       data   0x000006
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x00006b      
+                            0x002007    0x002008      
+            110 out of 8455 program addresses used, program memory utilization is 1%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                  CONFIG1   0x000068    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+               CONFIG_ADC   0x000033    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+              CONFIG_ADC2   0x00003c    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+                CONFIG_IO   0x000029    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+     CONFIG_T2CON_CCP1CON   0x000045    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+                 DELAY_AQ   0x000056    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+            DELAY_MULTPLX   0x000066    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+              DELAY_SMALL   0x000061    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+                     LOOP   0x000018    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+                    SETUP   0x000015    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+               TABLA_7SEG   0x000001    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+          _MAIN_PROG_0007   0x00001c    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+          _MAIN_PROG_000F   0x000024    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+          _MAIN_PROG_004F   0x000064    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+                  ADC_VAL   0x000020       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+                 ADC_VAL2   0x000021       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+                    CONT1   0x000024       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+                    CONT2   0x000025       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+                   DECODE   0x000022       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+                  DECODE2   0x000023       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+               TABLA_7SEG   0x000001    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+                    SETUP   0x000015    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+                     LOOP   0x000018    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+          _MAIN_PROG_0007   0x00001c    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+          _MAIN_PROG_000F   0x000024    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+                CONFIG_IO   0x000029    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+               CONFIG_ADC   0x000033    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+              CONFIG_ADC2   0x00003c    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+     CONFIG_T2CON_CCP1CON   0x000045    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+                 DELAY_AQ   0x000056    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+              DELAY_SMALL   0x000061    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+          _MAIN_PROG_004F   0x000064    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+            DELAY_MULTPLX   0x000066    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+                  CONFIG1   0x000068    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+                  ADC_VAL   0x000020       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+                 ADC_VAL2   0x000021       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+                   DECODE   0x000022       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+                  DECODE2   0x000023       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+                    CONT1   0x000024       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+                    CONT2   0x000025       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\LAB8.X\Labo8.asm
+
+

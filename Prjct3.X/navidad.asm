@@ -29,8 +29,10 @@ XCOR	RES 1
 YCOR	RES 1
 BAND	RES 1
 BAND2	RES 1
-XVIENE  RES 1
+VIENE  RES 1
 YVIENE  RES 1
+BANDERAS RES 1
+MOT	RES 1
  
 ;####RESET VECTOR####
 RES_VECT  CODE    0x0000            ; processor reset vector
@@ -68,16 +70,16 @@ SETUP:
     CALL CONFIG_IO
     CALL CONFIG_ADC
     CALL CONFIG_TXRX
-    CLRF DECODE
-    CLRF DECODE2
-    CLRF DECODE3
-    CLRF DECODE4
+    CALL CONFIG_T2CON_CCP1CON
+    
     CLRF BAND
     CLRF BAND2
     CLRF XCOR
     CLRF YCOR
-    CLRF XVIENE
-    CLRF YVIENE
+    CLRF VIENE
+    CLRF BANDERAS
+    ;MOVLW .150
+    ;MOVWF CCPR2L
     BSF	 BAND, 0
     
 ;####EMPIEZA MAINLOOP####     
@@ -85,18 +87,24 @@ LOOP:
     CALL    LEC_POTX
     CALL    DELAY_AQ
     CALL    LEC_POTY
-    CALL    SEL_ENVIO
-    CALL    SEL_RECIBIR
-    MOVFW XVIENE
-    MOVWF DECODE
-    MOVWF DECODE2
-    MOVFW YVIENE
-    MOVWF DECODE3
-    MOVWF DECODE4
-;########################################    
-    CALL SEG7
-    GOTO    LOOP                         ; loop forever
+    CALL    ENVIO1
+    CALL    DELAY_MULTPLX
+    CALL    RECIBIR2
+    CALL    LEC_EEPROM
     
+    CALL    LEDS
+
+    CALL    MOTORDC
+    
+
+    MOVFW   ADC_VAL
+    SUBLW   .1
+    MOVWF   MOT
+    BTFSC   STATUS, C
+    GOTO    SIGN
+    GOTO    NO_SIGN
+    GOTO    LOOP                         ; loop forever
+   
 ;####SETUPS####
 CONFIG_IO:
     BANKSEL ANSEL
@@ -108,6 +116,7 @@ CONFIG_IO:
     CLRF    TRISD
     CLRF    TRISB
     CLRF    TRISC
+    CLRF    TRISE
     BANKSEL PORTD
     CLRF    PORTA
     CLRF    PORTD
@@ -188,14 +197,7 @@ SEL_RECIBIR:
 ;    GOTO    RECIBIR2
     
     
-RECIBIR: ;Recibir info de X
-    BSF	    BAND2, 0
-    ;BSF	    BAND2, 1
-    BTFSS   PIR1, RCIF
-    RETURN
-    MOVF    RCREG, W
-    MOVWF   XVIENE
-    RETURN
+
     
 RECIBIR2: ;Recibir info de Y
     BCF	    BAND2, 0
@@ -203,53 +205,26 @@ RECIBIR2: ;Recibir info de Y
     BTFSS   PIR1, RCIF
     RETURN
     MOVF    RCREG, W
-    MOVWF   YVIENE
+    MOVWF   VIENE
+    MOVWF   BANDERAS
     RETURN
     
-SEG7: ;Codificacion para multiplexar y mostrar en los displays
-    CLRF PORTB
-    BSF PORTD, 1
-    BCF PORTD, 2
-    BCF PORTD, 3
-    BCF PORTD, 4
-    MOVF DECODE, W
-    CALL TABLA_7SEG
-    MOVWF PORTB
-    CALL DELAY_MULTPLX
-    
-    CLRF PORTB
-    BCF PORTD, 1
-    BSF PORTD, 2
-    BCF PORTD, 3
-    BCF PORTD, 4
-    SWAPF DECODE2, W
-    MOVWF DECODE2
-    CALL TABLA_7SEG
-    MOVWF PORTB
-    CALL DELAY_MULTPLX
-    
-    CLRF PORTB
-    BCF PORTD, 1
-    BCF PORTD, 2
-    BSF PORTD, 3
-    BCF PORTD, 4
-    MOVF DECODE3, W
-    CALL TABLA_7SEG
-    MOVWF PORTB
-    CALL DELAY_MULTPLX
-    
-    CLRF PORTB
-    BCF PORTD, 1
-    BCF PORTD, 2
-    BCF PORTD, 3
-    BSF PORTD, 4
-    SWAPF DECODE4, W
-    MOVWF DECODE4
-    CALL TABLA_7SEG
-    MOVWF PORTB
-    CALL DELAY_MULTPLX
-    
+CONFIG_T2CON_CCP1CON:
+    BANKSEL PR2
+    MOVLW   .156
+    MOVWF   PR2
+    BANKSEL CCP2CON
+    BSF	    CCP2CON, 3
+    BSF	    CCP2CON, 2
+    BANKSEL PORTA
+    MOVLW   B'00000111'
+    MOVWF   T2CON
+    BSF	    CCP1CON, 3
+    BSF	    CCP1CON, 2
+    BCF	    CCP1CON, 1
+    BCF	    CCP1CON, 0
     RETURN
+    
     
     
 LEC_POTX: ;Lecutra del pot de X
@@ -261,6 +236,7 @@ LEC_POTX: ;Lecutra del pot de X
     GOTO    $-1
     MOVF    ADRESH, W
     MOVWF   ADC_VAL
+    MOVWF   CCPR1L
     RETURN
     
 LEC_POTY: ;lECTURA DEL POT DE Y
@@ -272,6 +248,7 @@ LEC_POTY: ;lECTURA DEL POT DE Y
     GOTO    $-1
     MOVF    ADRESH, W
     MOVWF   ADC_VAL2
+    ;MOVWF   CCPR2L
     RETURN
     
 SEL_ENVIO: ;Toggle de envíos
@@ -297,6 +274,74 @@ ENVIO1: ;Envío segundo Byte
     MOVWF   TXREG
     RETURN
     
+ESC_EEPROM:
+    BANKSEL EEADR
+    MOVLW .0
+    MOVWF EEADR
+    BANKSEL PORTA
+    MOVFW PORTB
+    BANKSEL EEDAT
+    MOVWF   EEDAT
+    BANKSEL EECON1
+    BCF EECON1,EEPGD
+    BSF EECON1,WREN
+    BCF INTCON, GIE
+    MOVLW 0x55 
+    MOVWF EECON2 ;Write 55h
+    MOVLW 0XAA  
+    MOVWF EECON2 
+    BSF EECON1, WR
+    BSF INTCON, GIE 
     
+    BCF EECON1, WREN 
+    BANKSEL PORTA   
+    RETURN
     
+LEC_EEPROM:
+    MOVLW   .0
+    BANKSEL EEADR
+    MOVWF   EEADR
+    BANKSEL EECON1
+    BCF     EECON1, EEPGD
+    BSF	    EECON1, RD
+    BANKSEL EEDATA
+    MOVF    EEDATA, W
+    BANKSEL PORTD
+    MOVWF   PORTD
+    BANKSEL PORTA
+    RETURN    
+    
+LEDS:
+   BANKSEL  PORTB
+   MOVFW    BANDERAS
+   MOVWF    PORTB
+   RETURN
+MOTORDC:
+    BANKSEL PORTB
+    MOVFW   VIENE
+    ANDLW B'00110000'
+    MOVWF   VIENE
+    BTFSC   VIENE, 4
+    GOTO    LENTO
+    BTFSC   VIENE, 5
+    GOTO    RAPIDO
+    MOVLW   .15
+    MOVWF   CCPR2L
+    RETURN
+LENTO:
+    MOVLW   .70
+    MOVWF   CCPR2L
+    RETURN
+RAPIDO:
+    MOVLW   .252
+    MOVWF   CCPR2L
+    RETURN
+    
+SIGN:
+    CALL ESC_EEPROM
+    GOTO LOOP
+NO_SIGN:
+    GOTO LOOP
+    
+
     END

@@ -1,0 +1,127 @@
+MPLINK 5.08, LINKER
+Linker Map File - Created Wed Nov 25 13:48:03 2020
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                 RES_VECT       code   0x000000    program   0x000026
+                   .cinit    romdata   0x000013    program   0x000004
+                MAIN_PROG       code   0x000015    program   0x0001e6
+.config_2007_BUILD/DEFAULT/PRODUCTION/NAVIDAD       code   0x002007    program   0x000002
+.config_2008_BUILD/DEFAULT/PRODUCTION/NAVIDAD       code   0x002008    program   0x000002
+                      GPR      udata   0x000020       data   0x000010
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000107      
+                            0x002007    0x002008      
+            266 out of 8455 program addresses used, program memory utilization is 3%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                  CONFIG1   0x00007e    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+               CONFIG_ADC   0x000043    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+              CONFIG_ADC2   0x00004c    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                CONFIG_IO   0x000030    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+     CONFIG_T2CON_CCP1CON   0x00008b    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+              CONFIG_TXRX   0x000055    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                 DELAY_AQ   0x00006c    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+            DELAY_MULTPLX   0x00007c    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+              DELAY_SMALL   0x000077    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                   ENVIO1   0x0000bd    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                   ENVIO3   0x0000b6    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+               ESC_EEPROM   0x0000c4    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+               LEC_EEPROM   0x0000dd    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                 LEC_POTX   0x00009c    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                 LEC_POTY   0x0000a7    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                     LEDS   0x0000ee    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                    LENTO   0x0000ff    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                     LOOP   0x000020    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                  MOTORDC   0x0000f3    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                  NO_SIGN   0x000107    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                   RAPIDO   0x000102    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                 RECIBIR2   0x000084    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                SEL_ENVIO   0x0000b1    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+              SEL_RECIBIR   0x000082    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                    SETUP   0x000015    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                     SIGN   0x000105    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+               TABLA_7SEG   0x000001    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+          _MAIN_PROG_0065   0x00007a    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+          _MAIN_PROG_008D   0x0000a2    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+          _MAIN_PROG_0098   0x0000ad    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                  ADC_VAL   0x000020       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                 ADC_VAL2   0x000021       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                     BAND   0x00002a       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                    BAND2   0x00002b       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                 BANDERAS   0x00002e       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                    CONT1   0x000026       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                    CONT2   0x000027       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                   DECODE   0x000022       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                  DECODE2   0x000023       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                  DECODE3   0x000024       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                  DECODE4   0x000025       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                      MOT   0x00002f       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                    VIENE   0x00002c       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                     XCOR   0x000028       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                     YCOR   0x000029       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                   YVIENE   0x00002d       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+               TABLA_7SEG   0x000001    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                    SETUP   0x000015    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                     LOOP   0x000020    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                CONFIG_IO   0x000030    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+               CONFIG_ADC   0x000043    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+              CONFIG_ADC2   0x00004c    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+              CONFIG_TXRX   0x000055    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                 DELAY_AQ   0x00006c    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+              DELAY_SMALL   0x000077    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+          _MAIN_PROG_0065   0x00007a    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+            DELAY_MULTPLX   0x00007c    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                  CONFIG1   0x00007e    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+              SEL_RECIBIR   0x000082    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                 RECIBIR2   0x000084    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+     CONFIG_T2CON_CCP1CON   0x00008b    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                 LEC_POTX   0x00009c    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+          _MAIN_PROG_008D   0x0000a2    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                 LEC_POTY   0x0000a7    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+          _MAIN_PROG_0098   0x0000ad    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                SEL_ENVIO   0x0000b1    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                   ENVIO3   0x0000b6    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                   ENVIO1   0x0000bd    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+               ESC_EEPROM   0x0000c4    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+               LEC_EEPROM   0x0000dd    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                     LEDS   0x0000ee    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                  MOTORDC   0x0000f3    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                    LENTO   0x0000ff    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                   RAPIDO   0x000102    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                     SIGN   0x000105    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                  NO_SIGN   0x000107    program     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                  ADC_VAL   0x000020       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                 ADC_VAL2   0x000021       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                   DECODE   0x000022       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                  DECODE2   0x000023       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                  DECODE3   0x000024       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                  DECODE4   0x000025       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                    CONT1   0x000026       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                    CONT2   0x000027       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                     XCOR   0x000028       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                     YCOR   0x000029       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                     BAND   0x00002a       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                    BAND2   0x00002b       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                    VIENE   0x00002c       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                   YVIENE   0x00002d       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                 BANDERAS   0x00002e       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+                      MOT   0x00002f       data     static C:\Users\Carlo\OneDrive\Documentos\GitHub\Progra_de_Micros\Prjct3.X\navidad.asm
+
+
