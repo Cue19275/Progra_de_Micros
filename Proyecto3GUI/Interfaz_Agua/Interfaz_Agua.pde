@@ -31,6 +31,7 @@ int bit3;
 int bit4;
 int bit5;
 int send;
+int barridos;
 
 void setup(){
   size(400, 420);
@@ -105,7 +106,7 @@ int input = myPort.read();
      valpot = datosPIC[0];
      delay(5);
      println(valpot);
-     myPort.write('A');
+     //myPort.write('A');
      cont = 0;
      send = bit1 + bit2 + bit3 + bit4 + bit5;
      myPort.write(send);

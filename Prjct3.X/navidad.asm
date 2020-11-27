@@ -43,6 +43,9 @@ BANDERAS RES 1
 MOT	RES 1
 BARRIDOS    RES 1
 NUMERO	    RES 1
+CNT	RES 1
+CAMBIO RES 1
+MOD RES 1
  
  
 ;####RESET VECTOR####
@@ -72,8 +75,12 @@ SETUP:
     CLRF YCOR
     CLRF VIENE
     CLRF BANDERAS
+    CLRF CAMBIO
     MOVLW .10
     MOVWF NUMERO
+    MOVLW .10
+    MOVWF CNT
+    MOVWF MOD
     BSF	 BAND, 0
     
 ;####EMPIEZA MAINLOOP####     
@@ -98,9 +105,15 @@ LOOP:
     
 SIGUE:
     
-    BTFSS   PORTD, 2
-    GOTO    PWM_L
-    GOTO    PWM_H
+    CALL    DELAY_AQ2
+    DECFSZ  CNT, 1
+    GOTO    LOOP
+;    BTFSS   CAMBIO, 0
+;    GOTO    TOGGLE_2
+    CALL    TOGGLE
+    
+    
+    
     
 
 ;    MOVFW   ADC_VAL
@@ -344,40 +357,6 @@ RAPIDO:
     MOVWF   CCPR2L
     RETURN
     
-SIGN:
-    CALL ESC_EEPROM
-    GOTO LOOP
-NO_SIGN:
-    GOTO LOOP
-   
-
-	
-PWM_H:
-;    INCF	CUENTA, F
-;    MOVLW	NUMERO2
-;    SUBWF	CUENTA,W; CUENTA - NUMERO = W
-;    BTFSC	STATUS,Z
-    GOTO	PWM_H2
-;    GOTO	LOOP
-    
-PWM_H2:
-    CLRF	CUENTA
-    BCF		PORTD, 2
-    GOTO	LOOP
-    
-PWM_L:
-    INCF	CUENTA2, F
-    MOVLW	NUMERO
-    SUBWF	CUENTA2, W; CUENTA - NUMERO = W
-    BTFSC	STATUS,Z
-    GOTO	PWM_L2
-    GOTO	LOOP
-    
-PWM_L2:
-    CLRF	CUENTA2
-    BSF		PORTD, 2
-    
-    GOTO	LOOP
  
 TEMPO_1:
     BSF	    PORTE, 2
@@ -390,8 +369,72 @@ TEMPO_2:
     GOTO    SIGUE
     
 TEMPO_3:
-    BCF	    PORTE, 2
-    CALL    ESC_EEPROM
-    GOTO    SIGUE    
+    MOVLW   .50
+    MOVWF   MOD
+    GOTO    SIGUE 
+    
+  
+	
+DELAY_AQ2:
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    RETURN
+    
+TOGGLE:
+    MOVFW MOD
+    MOVWF CNT
+    BTFSC PORTD, 2
+    GOTO  OFF_D
+    BSF   PORTD, 2
+    RETURN
+    
+OFF_D:
+    BCF   PORTD, 2
+    RETURN
+TOGGLE_2:
+    MOVLW .10
+    MOVWF CNT
+    BTFSC PORTD, 2
+    GOTO  OFF_D
+    BSF   PORTD, 2
+    GOTO  LOOP
     
     END

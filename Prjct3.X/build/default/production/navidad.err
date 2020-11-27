@@ -1,36 +1,36 @@
 Message[313] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 19 : CBLOCK constants will start with a value of 0.
 Warning[207] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 25 : Found label after column 1. (NUMERO2)
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 117 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[305] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 118 : Using default destination of 1 (file).
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 118 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 120 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[305] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 121 : Using default destination of 1 (file).
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 121 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 122 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 123 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 124 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 125 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 126 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 127 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 128 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 130 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[305] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 131 : Using default destination of 1 (file).
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 131 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 133 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[305] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 134 : Using default destination of 1 (file).
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 134 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 135 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 136 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 137 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 138 : Register in operand not in bank 0.  Ensure that bank bits are correct.
 Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 139 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 148 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 156 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 157 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 159 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 162 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 163 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 140 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 141 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 152 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 161 : Register in operand not in bank 0.  Ensure that bank bits are correct.
 Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 169 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 224 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 289 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 293 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 295 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 296 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 299 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 301 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 170 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 172 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 175 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 176 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 182 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 237 : Register in operand not in bank 0.  Ensure that bank bits are correct.
 Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 302 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 304 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 311 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 313 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 306 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 308 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 309 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 312 : Register in operand not in bank 0.  Ensure that bank bits are correct.
 Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 314 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 316 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 315 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 317 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 324 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 326 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 327 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\CARLO\ONEDRIVE\DOCUMENTOS\GITHUB\PROGRA_DE_MICROS\PRJCT3.X\NAVIDAD.ASM 329 : Register in operand not in bank 0.  Ensure that bank bits are correct.
