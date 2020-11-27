@@ -41,10 +41,7 @@ VIENE  RES 1
 YVIENE  RES 1
 BANDERAS RES 1
 MOT	RES 1
-W_TEMP	RES 1 ;Variable para el push/pop
-STATUS_TEMP RES 1 ;Variable para el push/pop
-VarT1H      RES 1 ;BYTE alto del TMR1
-VarT1L      RES 1 ;BYTE bajo del TMR1
+BARRIDOS    RES 1
 NUMERO	    RES 1
  
  
@@ -67,7 +64,7 @@ SETUP:
     CALL CONFIG_ADC
     CALL CONFIG_TXRX
     CALL CONFIG_T2CON_CCP1CON
-
+    CALL    LEC_EEPROM
     
     CLRF BAND
     CLRF BAND2
@@ -87,7 +84,7 @@ LOOP:
     CALL    ENVIO1
     CALL    DELAY_MULTPLX
     CALL    RECIBIR2
-    CALL    LEC_EEPROM
+    
     
     CALL    LEDS
 
@@ -274,7 +271,7 @@ ENVIO3:
     BSF     BAND, 0
     BTFSS   PIR1, TXIF
     RETURN
-    MOVFW   ADC_VAL
+    MOVFW   BARRIDOS
     MOVWF   TXREG
     RETURN
 ENVIO1: ;Envío segundo Byte
@@ -291,7 +288,7 @@ ESC_EEPROM:
     MOVLW .0
     MOVWF EEADR
     BANKSEL PORTA
-    MOVFW PORTB
+    MOVFW PORTE
     BANKSEL EEDAT
     MOVWF   EEDAT
     BANKSEL EECON1
@@ -303,10 +300,9 @@ ESC_EEPROM:
     MOVLW 0XAA  
     MOVWF EECON2 
     BSF EECON1, WR
-    BSF INTCON, GIE 
     
     BCF EECON1, WREN 
-    BANKSEL PORTA   
+    BANKSEL PORTA  
     RETURN
     
 LEC_EEPROM:
@@ -318,10 +314,9 @@ LEC_EEPROM:
     BSF	    EECON1, RD
     BANKSEL EEDATA
     MOVF    EEDATA, W
-    BANKSEL PORTD
-    MOVWF   PORTD
+    MOVWF   PORTE
     BANKSEL PORTA
-    RETURN    
+    RETURN   
     
 LEDS:
    BANKSEL  PORTB
@@ -381,18 +376,22 @@ PWM_L:
 PWM_L2:
     CLRF	CUENTA2
     BSF		PORTD, 2
+    
     GOTO	LOOP
  
 TEMPO_1:
     BSF	    PORTE, 2
+    CALL    ESC_EEPROM
     GOTO    SIGUE
     
 TEMPO_2:
     BCF	    PORTE, 2
+    CALL    ESC_EEPROM
     GOTO    SIGUE
     
 TEMPO_3:
     BCF	    PORTE, 2
+    CALL    ESC_EEPROM
     GOTO    SIGUE    
     
     END

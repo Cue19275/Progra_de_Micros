@@ -1,4 +1,4 @@
-MPASM 5.77                       NAVIDAD.ASM   11-26-2020  1:29:48         PAGE  1
+MPASM 5.77                       NAVIDAD.ASM   11-26-2020  3:35:36         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -57,7 +57,7 @@ Warning[207]: Found label after column 1. (NUMERO2)
 0007                  00035 CONT2   RES 1
 0008                  00036 XCOR    RES 1
 0009                  00037 YCOR    RES 1
-MPASM 5.77                       NAVIDAD.ASM   11-26-2020  1:29:48         PAGE  2
+MPASM 5.77                       NAVIDAD.ASM   11-26-2020  3:35:36         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -69,438 +69,437 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 000D                  00041 YVIENE  RES 1
 000E                  00042 BANDERAS RES 1
 000F                  00043 MOT     RES 1
-0010                  00044 W_TEMP  RES 1 ;Variable para el push/pop
-0011                  00045 STATUS_TEMP RES 1 ;Variable para el push/pop
-0012                  00046 VarT1H      RES 1 ;BYTE alto del TMR1
-0013                  00047 VarT1L      RES 1 ;BYTE bajo del TMR1
-0014                  00048 NUMERO      RES 1
-                      00049  
-                      00050  
-                      00051 ;####RESET VECTOR####
-                      00052 RES_VECT  CODE    0x0000            ; processor reset vector
-0000   2???           00053     GOTO    SETUP                   ; go to beginning of program
-                      00054 
-                      00055 ;####INTERRUPT####
+0010                  00044 BARRIDOS    RES 1
+0011                  00045 NUMERO      RES 1
+                      00046  
+                      00047  
+                      00048 ;####RESET VECTOR####
+                      00049 RES_VECT  CODE    0x0000            ; processor reset vector
+0000   2???           00050     GOTO    SETUP                   ; go to beginning of program
+                      00051 
+                      00052 ;####INTERRUPT####
+                      00053 
+                      00054 ;####TABLAS####
+                      00055 ;Tabla para decodificar valores binarios hacia el display de 7 seg
                       00056 
-                      00057 ;####TABLAS####
-                      00058 ;Tabla para decodificar valores binarios hacia el display de 7 seg
-                      00059 
-                      00060     
-                      00061     
-                      00062 MAIN_PROG CODE                      ; let linker place main program
-0000                  00063 SETUP:
-                      00064     ;BSF         STATUS, RP0
-                      00065     ;MOVLW B'00001011'
-0000   2???           00066     CALL CONFIG_IO
-0001   2???           00067     CALL CONFIG_ADC
-0002   2???           00068     CALL CONFIG_TXRX
-0003   2???           00069     CALL CONFIG_T2CON_CCP1CON
-                      00070 
-                      00071     
-0004   01??           00072     CLRF BAND
-0005   01??           00073     CLRF BAND2
-0006   01??           00074     CLRF XCOR
-0007   01??           00075     CLRF YCOR
-0008   01??           00076     CLRF VIENE
-0009   01??           00077     CLRF BANDERAS
-000A   300A           00078     MOVLW .10
-000B   00??           00079     MOVWF NUMERO
-000C   1400           00080     BSF  BAND, 0
-                      00081     
-                      00082 ;####EMPIEZA MAINLOOP####     
-000D                  00083 LOOP:
-000D   2???           00084     CALL    LEC_POTX
-000E   2???           00085     CALL    DELAY_AQ
-000F   2???           00086     CALL    LEC_POTY
-0010   2???           00087     CALL    ENVIO1
-0011   2???           00088     CALL    DELAY_MULTPLX
-0012   2???           00089     CALL    RECIBIR2
-0013   2???           00090     CALL    LEC_EEPROM
-MPASM 5.77                       NAVIDAD.ASM   11-26-2020  1:29:48         PAGE  3
+                      00057     
+                      00058     
+                      00059 MAIN_PROG CODE                      ; let linker place main program
+0000                  00060 SETUP:
+                      00061     ;BSF         STATUS, RP0
+                      00062     ;MOVLW B'00001011'
+0000   2???           00063     CALL CONFIG_IO
+0001   2???           00064     CALL CONFIG_ADC
+0002   2???           00065     CALL CONFIG_TXRX
+0003   2???           00066     CALL CONFIG_T2CON_CCP1CON
+0004   2???           00067     CALL    LEC_EEPROM
+                      00068     
+0005   01??           00069     CLRF BAND
+0006   01??           00070     CLRF BAND2
+0007   01??           00071     CLRF XCOR
+0008   01??           00072     CLRF YCOR
+0009   01??           00073     CLRF VIENE
+000A   01??           00074     CLRF BANDERAS
+000B   300A           00075     MOVLW .10
+000C   00??           00076     MOVWF NUMERO
+000D   1400           00077     BSF  BAND, 0
+                      00078     
+                      00079 ;####EMPIEZA MAINLOOP####     
+000E                  00080 LOOP:
+000E   2???           00081     CALL    LEC_POTX
+000F   2???           00082     CALL    DELAY_AQ
+0010   2???           00083     CALL    LEC_POTY
+0011   2???           00084     CALL    ENVIO1
+0012   2???           00085     CALL    DELAY_MULTPLX
+0013   2???           00086     CALL    RECIBIR2
+                      00087     
+                      00088     
+0014   2???           00089     CALL    LEDS
+                      00090 
+MPASM 5.77                       NAVIDAD.ASM   11-26-2020  3:35:36         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-                      00091     
-0014   2???           00092     CALL    LEDS
-                      00093 
-0015   2???           00094     CALL    MOTORDC
-0016   1B88           00095     BTFSC   PORTD, 7
-0017   2???           00096     GOTO    TEMPO_1
-0018   1988           00097     BTFSC   PORTD, 3
-0019   2???           00098     GOTO    TEMPO_2
-001A   1B08           00099     BTFSC   PORTD, 6
-001B   2???           00100     GOTO    TEMPO_3
-                      00101     
-001C                  00102 SIGUE:
-                      00103     
-001C   1D08           00104     BTFSS   PORTD, 2
-001D   2???           00105     GOTO    PWM_L
-001E   2???           00106     GOTO    PWM_H
-                      00107     
-                      00108 
-                      00109 ;    MOVFW   ADC_VAL
-                      00110 ;    SUBLW   .1
-                      00111 ;    MOVWF   MOT
-                      00112 ;    BTFSC   STATUS, C
-                      00113 ;    GOTO    SIGN
-                      00114 ;    GOTO    NO_SIGN
-001F   2???           00115     GOTO    LOOP                         ; loop forever
-                      00116    
-                      00117 ;####SETUPS####
-0020                  00118 CONFIG_IO:
-0020   1683 1703      00119     BANKSEL ANSEL
+0015   2???           00091     CALL    MOTORDC
+0016   1B88           00092     BTFSC   PORTD, 7
+0017   2???           00093     GOTO    TEMPO_1
+0018   1988           00094     BTFSC   PORTD, 3
+0019   2???           00095     GOTO    TEMPO_2
+001A   1B08           00096     BTFSC   PORTD, 6
+001B   2???           00097     GOTO    TEMPO_3
+                      00098     
+001C                  00099 SIGUE:
+                      00100     
+001C   1D08           00101     BTFSS   PORTD, 2
+001D   2???           00102     GOTO    PWM_L
+001E   2???           00103     GOTO    PWM_H
+                      00104     
+                      00105 
+                      00106 ;    MOVFW   ADC_VAL
+                      00107 ;    SUBLW   .1
+                      00108 ;    MOVWF   MOT
+                      00109 ;    BTFSC   STATUS, C
+                      00110 ;    GOTO    SIGN
+                      00111 ;    GOTO    NO_SIGN
+001F   2???           00112     GOTO    LOOP                         ; loop forever
+                      00113    
+                      00114 ;####SETUPS####
+0020                  00115 CONFIG_IO:
+0020   1683 1703      00116     BANKSEL ANSEL
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0022   0188           00120     CLRF    ANSEL
+0022   0188           00117     CLRF    ANSEL
 Message[305]: Using default destination of 1 (file).
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0023   0988           00121     COMF    ANSEL
-0024   1683 1303      00122     BANKSEL TRISA
+0023   0988           00118     COMF    ANSEL
+0024   1683 1303      00119     BANKSEL TRISA
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0026   0185           00123     CLRF    TRISA
+0026   0185           00120     CLRF    TRISA
 Message[305]: Using default destination of 1 (file).
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0027   0985           00124     COMF    TRISA
+0027   0985           00121     COMF    TRISA
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0028   1108           00125     BCF     TRISD, 2
+0028   1108           00122     BCF     TRISD, 2
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0029   1588           00126     BSF     TRISD, 3
+0029   1588           00123     BSF     TRISD, 3
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-002A   1708           00127     BSF     TRISD, 6
+002A   1708           00124     BSF     TRISD, 6
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-002B   1788           00128     BSF     TRISD, 7
+002B   1788           00125     BSF     TRISD, 7
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-002C   0186           00129     CLRF    TRISB
+002C   0186           00126     CLRF    TRISB
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-002D   0187           00130     CLRF    TRISC
+002D   0187           00127     CLRF    TRISC
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-MPASM 5.77                       NAVIDAD.ASM   11-26-2020  1:29:48         PAGE  4
+002E   0189           00128     CLRF    TRISE
+002F   1283 1303      00129     BANKSEL PORTD
+0031   0185           00130     CLRF    PORTA
+MPASM 5.77                       NAVIDAD.ASM   11-26-2020  3:35:36         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-002E   0189           00131     CLRF    TRISE
-002F   1283 1303      00132     BANKSEL PORTD
-0031   0185           00133     CLRF    PORTA
-0032   0188           00134     CLRF    PORTD
-0033   0186           00135     CLRF    PORTB
-0034   0187           00136     CLRF    PORTC
-0035   0008           00137     RETURN
-                      00138     
-0036                  00139 CONFIG_ADC:
-0036   1683 1303      00140     BANKSEL ADCON1
-0038   3000           00141     MOVLW   B'00000000'
+0032   0188           00131     CLRF    PORTD
+0033   0186           00132     CLRF    PORTB
+0034   0187           00133     CLRF    PORTC
+0035   0008           00134     RETURN
+                      00135     
+0036                  00136 CONFIG_ADC:
+0036   1683 1303      00137     BANKSEL ADCON1
+0038   3000           00138     MOVLW   B'00000000'
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0039   009F           00142     MOVWF   ADCON1
-003A   1283 1303      00143     BANKSEL ADCON0
-003C   3041           00144     MOVLW   B'01000001'
-003D   009F           00145     MOVWF   ADCON0
-003E   0008           00146     RETURN
-                      00147     
-003F                  00148 CONFIG_ADC2:
-003F   1683 1303      00149     BANKSEL ADCON1
-0041   3000           00150     MOVLW   B'00000000'
+0039   009F           00139     MOVWF   ADCON1
+003A   1283 1303      00140     BANKSEL ADCON0
+003C   3041           00141     MOVLW   B'01000001'
+003D   009F           00142     MOVWF   ADCON0
+003E   0008           00143     RETURN
+                      00144     
+003F                  00145 CONFIG_ADC2:
+003F   1683 1303      00146     BANKSEL ADCON1
+0041   3000           00147     MOVLW   B'00000000'
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0042   009F           00151     MOVWF   ADCON1
-0043   1283 1303      00152     BANKSEL ADCON0
-0045   3049           00153     MOVLW   B'01001001'
-0046   009F           00154     MOVWF   ADCON0
-0047   0008           00155     RETURN
-                      00156     
-0048                  00157 CONFIG_TXRX:
-0048   1683 1303      00158     BANKSEL TXSTA
+0042   009F           00148     MOVWF   ADCON1
+0043   1283 1303      00149     BANKSEL ADCON0
+0045   3049           00150     MOVLW   B'01001001'
+0046   009F           00151     MOVWF   ADCON0
+0047   0008           00152     RETURN
+                      00153     
+0048                  00154 CONFIG_TXRX:
+0048   1683 1303      00155     BANKSEL TXSTA
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-004A   1218           00159     BCF     TXSTA, SYNC
+004A   1218           00156     BCF     TXSTA, SYNC
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-004B   1518           00160     BSF     TXSTA, BRGH
-004C   1683 1703      00161     BANKSEL BAUDCTL
+004B   1518           00157     BSF     TXSTA, BRGH
+004C   1683 1703      00158     BANKSEL BAUDCTL
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-004E   1187           00162     BCF     BAUDCTL, BRG16
-004F   1683 1303      00163     BANKSEL SPBRG
-0051   3019           00164     MOVLW   .25
+004E   1187           00159     BCF     BAUDCTL, BRG16
+004F   1683 1303      00160     BANKSEL SPBRG
+0051   3019           00161     MOVLW   .25
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0052   0099           00165     MOVWF   SPBRG
+0052   0099           00162     MOVWF   SPBRG
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0053   019A           00166     CLRF    SPBRGH
-0054   1283 1303      00167     BANKSEL RCSTA
-0056   1798           00168     BSF     RCSTA, SPEN
-0057   1318           00169     BCF     RCSTA, RX9
-0058   1618           00170     BSF     RCSTA, CREN
-0059   1683 1303      00171     BANKSEL TXSTA
+0053   019A           00163     CLRF    SPBRGH
+0054   1283 1303      00164     BANKSEL RCSTA
+0056   1798           00165     BSF     RCSTA, SPEN
+0057   1318           00166     BCF     RCSTA, RX9
+0058   1618           00167     BSF     RCSTA, CREN
+0059   1683 1303      00168     BANKSEL TXSTA
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-005B   1698           00172     BSF     TXSTA, TXEN
-005C   1283 1303      00173     BANKSEL PORTA
-005E   0008           00174     RETURN
-                      00175     
-MPASM 5.77                       NAVIDAD.ASM   11-26-2020  1:29:48         PAGE  5
+005B   1698           00169     BSF     TXSTA, TXEN
+005C   1283 1303      00170     BANKSEL PORTA
+005E   0008           00171     RETURN
+                      00172     
+005F                  00173 DELAY_AQ:
+005F   0000           00174     NOP
+0060   0000           00175     NOP
+MPASM 5.77                       NAVIDAD.ASM   11-26-2020  3:35:36         PAGE  5
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-005F                  00176 DELAY_AQ:
-005F   0000           00177     NOP
-0060   0000           00178     NOP
-0061   0000           00179     NOP
-0062   0000           00180     NOP
-0063   0000           00181     NOP
-0064   0000           00182     NOP
-0065   0000           00183     NOP
-0066   0000           00184     NOP
-0067   0000           00185     NOP
-0068   0000           00186     NOP
-0069   0008           00187     RETURN
-                      00188     
-006A                  00189 DELAY_SMALL
-006A   300A           00190     MOVLW .10
-006B   08??           00191     MOVFW CONT1
-006C   0B??           00192     DECFSZ CONT1, F
-006D   2???           00193                GOTO $-1 ;IR A PC - 1, REGRESAR A DECFSZ
-006E   0008           00194  RETURN
-                      00195  
-006F                  00196 DELAY_MULTPLX ;Delay para multiplexar
-006F   300A           00197     MOVLW .10
-0070   00??           00198     MOVWF CONT2
-0071                  00199 CONFIG1:    
-0071   2???           00200     CALL DELAY_SMALL
-0072   0B??           00201     DECFSZ CONT2, F
-0073   2???           00202     GOTO CONFIG1
-0074   0008           00203     RETURN
-                      00204     
-0075                  00205 SEL_RECIBIR:
-0075   1800           00206     BTFSC   BAND2, 0
-0076   2???           00207     GOTO    RECIBIR2
-                      00208 ;    BTFSC   BAND2, 1
-                      00209 ;    GOTO    RECIBIR2
+0061   0000           00176     NOP
+0062   0000           00177     NOP
+0063   0000           00178     NOP
+0064   0000           00179     NOP
+0065   0000           00180     NOP
+0066   0000           00181     NOP
+0067   0000           00182     NOP
+0068   0000           00183     NOP
+0069   0008           00184     RETURN
+                      00185     
+006A                  00186 DELAY_SMALL
+006A   300A           00187     MOVLW .10
+006B   08??           00188     MOVFW CONT1
+006C   0B??           00189     DECFSZ CONT1, F
+006D   2???           00190                GOTO $-1 ;IR A PC - 1, REGRESAR A DECFSZ
+006E   0008           00191  RETURN
+                      00192  
+006F                  00193 DELAY_MULTPLX ;Delay para multiplexar
+006F   300A           00194     MOVLW .10
+0070   00??           00195     MOVWF CONT2
+0071                  00196 CONFIG1:    
+0071   2???           00197     CALL DELAY_SMALL
+0072   0B??           00198     DECFSZ CONT2, F
+0073   2???           00199     GOTO CONFIG1
+0074   0008           00200     RETURN
+                      00201     
+0075                  00202 SEL_RECIBIR:
+0075   1800           00203     BTFSC   BAND2, 0
+0076   2???           00204     GOTO    RECIBIR2
+                      00205 ;    BTFSC   BAND2, 1
+                      00206 ;    GOTO    RECIBIR2
+                      00207     
+                      00208     
+                      00209 
                       00210     
-                      00211     
-                      00212 
-                      00213     
-0077                  00214 RECIBIR2: ;Recibir info de Y
-0077   1000           00215     BCF     BAND2, 0
-                      00216     ;BCF            BAND2, 1
-0078   1E8C           00217     BTFSS   PIR1, RCIF
-0079   0008           00218     RETURN
-007A   081A           00219     MOVF    RCREG, W
-007B   00??           00220     MOVWF   VIENE
-007C   00??           00221     MOVWF   BANDERAS
-007D   0008           00222     RETURN
-                      00223     
-007E                  00224 CONFIG_T2CON_CCP1CON:
-007E   1683 1303      00225     BANKSEL PR2
-0080   309C           00226     MOVLW   .156
+0077                  00211 RECIBIR2: ;Recibir info de Y
+0077   1000           00212     BCF     BAND2, 0
+                      00213     ;BCF            BAND2, 1
+0078   1E8C           00214     BTFSS   PIR1, RCIF
+0079   0008           00215     RETURN
+007A   081A           00216     MOVF    RCREG, W
+007B   00??           00217     MOVWF   VIENE
+007C   00??           00218     MOVWF   BANDERAS
+007D   0008           00219     RETURN
+                      00220     
+007E                  00221 CONFIG_T2CON_CCP1CON:
+007E   1683 1303      00222     BANKSEL PR2
+0080   309C           00223     MOVLW   .156
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0081   0092           00227     MOVWF   PR2
-MPASM 5.77                       NAVIDAD.ASM   11-26-2020  1:29:48         PAGE  6
+0081   0092           00224     MOVWF   PR2
+0082   1283 1303      00225     BANKSEL CCP2CON
+0084   159D           00226     BSF     CCP2CON, 3
+0085   151D           00227     BSF     CCP2CON, 2
+MPASM 5.77                       NAVIDAD.ASM   11-26-2020  3:35:36         PAGE  6
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-0082   1283 1303      00228     BANKSEL CCP2CON
-0084   159D           00229     BSF     CCP2CON, 3
-0085   151D           00230     BSF     CCP2CON, 2
-0086   1283 1303      00231     BANKSEL PORTA
-0088   3007           00232     MOVLW   B'00000111'
-0089   0092           00233     MOVWF   T2CON
-008A   1597           00234     BSF     CCP1CON, 3
-008B   1517           00235     BSF     CCP1CON, 2
-008C   1097           00236     BCF     CCP1CON, 1
-008D   1017           00237     BCF     CCP1CON, 0
-008E   0008           00238     RETURN
-                      00239     
-                      00240     
-                      00241     
-008F                  00242 LEC_POTX: ;Lecutra del pot de X
-008F   2???           00243     CALL    CONFIG_ADC
-0090   1283 1303      00244     BANKSEL PORTA
-0092   2???           00245     CALL    DELAY_AQ
-0093   149F           00246     BSF     ADCON0, GO
-0094   189F           00247     BTFSC   ADCON0, GO
-0095   2???           00248     GOTO    $-1
-0096   081E           00249     MOVF    ADRESH, W
-0097   00??           00250     MOVWF   ADC_VAL
-0098   0095           00251     MOVWF   CCPR1L
-0099   0008           00252     RETURN
-                      00253     
-009A                  00254 LEC_POTY: ;lECTURA DEL POT DE Y
-009A   2???           00255     CALL    CONFIG_ADC2
-009B   1283 1303      00256     BANKSEL PORTA
-009D   2???           00257     CALL    DELAY_AQ
-009E   149F           00258     BSF     ADCON0, GO
-009F   189F           00259     BTFSC   ADCON0, GO
-00A0   2???           00260     GOTO    $-1
-00A1   081E           00261     MOVF    ADRESH, W
-00A2   00??           00262     MOVWF   ADC_VAL2
-                      00263     ;MOVWF   CCPR2L
-00A3   0008           00264     RETURN
-                      00265     
-00A4                  00266 SEL_ENVIO: ;Toggle de envíos
-00A4   1800           00267     BTFSC   BAND, 0
-00A5   2???           00268     GOTO    ENVIO1
-00A6   1880           00269     BTFSC   BAND, 1
-00A7   2???           00270     GOTO    ENVIO3
-00A8   0008           00271     RETURN ;Envio primer Byte
-00A9                  00272 ENVIO3:
-00A9   1080           00273     BCF     BAND, 1
-00AA   1400           00274     BSF     BAND, 0
-00AB   1E0C           00275     BTFSS   PIR1, TXIF
-00AC   0008           00276     RETURN
-00AD   08??           00277     MOVFW   ADC_VAL
-00AE   0099           00278     MOVWF   TXREG
-00AF   0008           00279     RETURN
-00B0                  00280 ENVIO1: ;Envío segundo Byte
-MPASM 5.77                       NAVIDAD.ASM   11-26-2020  1:29:48         PAGE  7
+0086   1283 1303      00228     BANKSEL PORTA
+0088   3007           00229     MOVLW   B'00000111'
+0089   0092           00230     MOVWF   T2CON
+008A   1597           00231     BSF     CCP1CON, 3
+008B   1517           00232     BSF     CCP1CON, 2
+008C   1097           00233     BCF     CCP1CON, 1
+008D   1017           00234     BCF     CCP1CON, 0
+008E   0008           00235     RETURN
+                      00236     
+                      00237     
+                      00238     
+008F                  00239 LEC_POTX: ;Lecutra del pot de X
+008F   2???           00240     CALL    CONFIG_ADC
+0090   1283 1303      00241     BANKSEL PORTA
+0092   2???           00242     CALL    DELAY_AQ
+0093   149F           00243     BSF     ADCON0, GO
+0094   189F           00244     BTFSC   ADCON0, GO
+0095   2???           00245     GOTO    $-1
+0096   081E           00246     MOVF    ADRESH, W
+0097   00??           00247     MOVWF   ADC_VAL
+0098   0095           00248     MOVWF   CCPR1L
+0099   0008           00249     RETURN
+                      00250     
+009A                  00251 LEC_POTY: ;lECTURA DEL POT DE Y
+009A   2???           00252     CALL    CONFIG_ADC2
+009B   1283 1303      00253     BANKSEL PORTA
+009D   2???           00254     CALL    DELAY_AQ
+009E   149F           00255     BSF     ADCON0, GO
+009F   189F           00256     BTFSC   ADCON0, GO
+00A0   2???           00257     GOTO    $-1
+00A1   081E           00258     MOVF    ADRESH, W
+00A2   00??           00259     MOVWF   ADC_VAL2
+                      00260     ;MOVWF   CCPR2L
+00A3   0008           00261     RETURN
+                      00262     
+00A4                  00263 SEL_ENVIO: ;Toggle de envíos
+00A4   1800           00264     BTFSC   BAND, 0
+00A5   2???           00265     GOTO    ENVIO1
+00A6   1880           00266     BTFSC   BAND, 1
+00A7   2???           00267     GOTO    ENVIO3
+00A8   0008           00268     RETURN ;Envio primer Byte
+00A9                  00269 ENVIO3:
+00A9   1080           00270     BCF     BAND, 1
+00AA   1400           00271     BSF     BAND, 0
+00AB   1E0C           00272     BTFSS   PIR1, TXIF
+00AC   0008           00273     RETURN
+00AD   08??           00274     MOVFW   BARRIDOS
+00AE   0099           00275     MOVWF   TXREG
+00AF   0008           00276     RETURN
+00B0                  00277 ENVIO1: ;Envío segundo Byte
+00B0   1000           00278     BCF     BAND, 0
+00B1   1480           00279     BSF     BAND, 1
+00B2   1E0C           00280     BTFSS   PIR1, TXIF
+MPASM 5.77                       NAVIDAD.ASM   11-26-2020  3:35:36         PAGE  7
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-00B0   1000           00281     BCF     BAND, 0
-00B1   1480           00282     BSF     BAND, 1
-00B2   1E0C           00283     BTFSS   PIR1, TXIF
-00B3   0008           00284     RETURN
-00B4   08??           00285     MOVFW   ADC_VAL2
-00B5   0099           00286     MOVWF   TXREG
-00B6   0008           00287     RETURN
-                      00288     
-00B7                  00289 ESC_EEPROM:
-00B7   1283 1703      00290     BANKSEL EEADR
-00B9   3000           00291     MOVLW .0
+00B3   0008           00281     RETURN
+00B4   08??           00282     MOVFW   ADC_VAL2
+00B5   0099           00283     MOVWF   TXREG
+00B6   0008           00284     RETURN
+                      00285     
+00B7                  00286 ESC_EEPROM:
+00B7   1283 1703      00287     BANKSEL EEADR
+00B9   3000           00288     MOVLW .0
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-00BA   008D           00292     MOVWF EEADR
-00BB   1283 1303      00293     BANKSEL PORTA
-00BD   0806           00294     MOVFW PORTB
-00BE   1283 1703      00295     BANKSEL EEDAT
+00BA   008D           00289     MOVWF EEADR
+00BB   1283 1303      00290     BANKSEL PORTA
+00BD   0809           00291     MOVFW PORTE
+00BE   1283 1703      00292     BANKSEL EEDAT
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-00C0   008C           00296     MOVWF   EEDAT
-00C1   1683 1703      00297     BANKSEL EECON1
+00C0   008C           00293     MOVWF   EEDAT
+00C1   1683 1703      00294     BANKSEL EECON1
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-00C3   138C           00298     BCF EECON1,EEPGD
+00C3   138C           00295     BCF EECON1,EEPGD
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-00C4   150C           00299     BSF EECON1,WREN
-00C5   138B           00300     BCF INTCON, GIE
-00C6   3055           00301     MOVLW 0x55 
+00C4   150C           00296     BSF EECON1,WREN
+00C5   138B           00297     BCF INTCON, GIE
+00C6   3055           00298     MOVLW 0x55 
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-00C7   008D           00302     MOVWF EECON2 ;Write 55h
-00C8   30AA           00303     MOVLW 0XAA  
+00C7   008D           00299     MOVWF EECON2 ;Write 55h
+00C8   30AA           00300     MOVLW 0XAA  
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-00C9   008D           00304     MOVWF EECON2 
+00C9   008D           00301     MOVWF EECON2 
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-00CA   148C           00305     BSF EECON1, WR
-00CB   178B           00306     BSF INTCON, GIE 
+00CA   148C           00302     BSF EECON1, WR
+                      00303     
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+00CB   110C           00304     BCF EECON1, WREN 
+00CC   1283 1303      00305     BANKSEL PORTA  
+00CE   0008           00306     RETURN
                       00307     
+00CF                  00308 LEC_EEPROM:
+00CF   3000           00309     MOVLW   .0
+00D0   1283 1703      00310     BANKSEL EEADR
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-00CC   110C           00308     BCF EECON1, WREN 
-00CD   1283 1303      00309     BANKSEL PORTA   
-00CF   0008           00310     RETURN
-                      00311     
-00D0                  00312 LEC_EEPROM:
-00D0   3000           00313     MOVLW   .0
-00D1   1283 1703      00314     BANKSEL EEADR
+00D2   008D           00311     MOVWF   EEADR
+00D3   1683 1703      00312     BANKSEL EECON1
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-00D3   008D           00315     MOVWF   EEADR
-00D4   1683 1703      00316     BANKSEL EECON1
+00D5   138C           00313     BCF     EECON1, EEPGD
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-00D6   138C           00317     BCF     EECON1, EEPGD
+00D6   140C           00314     BSF     EECON1, RD
+00D7   1283 1703      00315     BANKSEL EEDATA
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-00D7   140C           00318     BSF     EECON1, RD
-00D8   1283 1703      00319     BANKSEL EEDATA
-Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-00DA   080C           00320     MOVF    EEDATA, W
-00DB   1283 1303      00321     BANKSEL PORTD
-MPASM 5.77                       NAVIDAD.ASM   11-26-2020  1:29:48         PAGE  8
+00D9   080C           00316     MOVF    EEDATA, W
+00DA   0089           00317     MOVWF   PORTE
+00DB   1283 1303      00318     BANKSEL PORTA
+00DD   0008           00319     RETURN   
+                      00320     
+00DE                  00321 LEDS:
+MPASM 5.77                       NAVIDAD.ASM   11-26-2020  3:35:36         PAGE  8
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-00DD   0088           00322     MOVWF   PORTD
-00DE   1283 1303      00323     BANKSEL PORTA
-00E0   0008           00324     RETURN    
-                      00325     
-00E1                  00326 LEDS:
-00E1   1283 1303      00327    BANKSEL  PORTB
-00E3   08??           00328    MOVFW    BANDERAS
-00E4   0086           00329    MOVWF    PORTB
-00E5   0008           00330    RETURN
-00E6                  00331 MOTORDC:
-00E6   1283 1303      00332     BANKSEL PORTB
-00E8   08??           00333     MOVFW   VIENE
-00E9   3930           00334     ANDLW B'00110000'
-00EA   00??           00335     MOVWF   VIENE
-00EB   1A00           00336     BTFSC   VIENE, 4
-00EC   2???           00337     GOTO    LENTO
-00ED   1A80           00338     BTFSC   VIENE, 5
-00EE   2???           00339     GOTO    RAPIDO
-00EF   300F           00340     MOVLW   .15
-00F0   009B           00341     MOVWF   CCPR2L
-00F1   0008           00342     RETURN
-00F2                  00343 LENTO:
-00F2   3046           00344     MOVLW   .70
-00F3   009B           00345     MOVWF   CCPR2L
-00F4   0008           00346     RETURN
-00F5                  00347 RAPIDO:
-00F5   30FC           00348     MOVLW   .252
-00F6   009B           00349     MOVWF   CCPR2L
-00F7   0008           00350     RETURN
-                      00351     
-00F8                  00352 SIGN:
-00F8   2???           00353     CALL ESC_EEPROM
-00F9   2???           00354     GOTO LOOP
-00FA                  00355 NO_SIGN:
-00FA   2???           00356     GOTO LOOP
-                      00357    
-                      00358 
-                      00359         
-00FB                  00360 PWM_H:
-                      00361 ;    INCF       CUENTA, F
-                      00362 ;    MOVLW      NUMERO2
-                      00363 ;    SUBWF      CUENTA,W; CUENTA - NUMERO = W
-                      00364 ;    BTFSC      STATUS,Z
-00FB   2???           00365     GOTO        PWM_H2
-                      00366 ;    GOTO       LOOP
+00DE   1283 1303      00322    BANKSEL  PORTB
+00E0   08??           00323    MOVFW    BANDERAS
+00E1   0086           00324    MOVWF    PORTB
+00E2   0008           00325    RETURN
+00E3                  00326 MOTORDC:
+00E3   1283 1303      00327     BANKSEL PORTB
+00E5   08??           00328     MOVFW   VIENE
+00E6   3930           00329     ANDLW B'00110000'
+00E7   00??           00330     MOVWF   VIENE
+00E8   1A00           00331     BTFSC   VIENE, 4
+00E9   2???           00332     GOTO    LENTO
+00EA   1A80           00333     BTFSC   VIENE, 5
+00EB   2???           00334     GOTO    RAPIDO
+00EC   300F           00335     MOVLW   .15
+00ED   009B           00336     MOVWF   CCPR2L
+00EE   0008           00337     RETURN
+00EF                  00338 LENTO:
+00EF   3046           00339     MOVLW   .70
+00F0   009B           00340     MOVWF   CCPR2L
+00F1   0008           00341     RETURN
+00F2                  00342 RAPIDO:
+00F2   30FC           00343     MOVLW   .252
+00F3   009B           00344     MOVWF   CCPR2L
+00F4   0008           00345     RETURN
+                      00346     
+00F5                  00347 SIGN:
+00F5   2???           00348     CALL ESC_EEPROM
+00F6   2???           00349     GOTO LOOP
+00F7                  00350 NO_SIGN:
+00F7   2???           00351     GOTO LOOP
+                      00352    
+                      00353 
+                      00354         
+00F8                  00355 PWM_H:
+                      00356 ;    INCF       CUENTA, F
+                      00357 ;    MOVLW      NUMERO2
+                      00358 ;    SUBWF      CUENTA,W; CUENTA - NUMERO = W
+                      00359 ;    BTFSC      STATUS,Z
+00F8   2???           00360     GOTO        PWM_H2
+                      00361 ;    GOTO       LOOP
+                      00362     
+00F9                  00363 PWM_H2:
+00F9   0180           00364     CLRF        CUENTA
+00FA   1108           00365     BCF         PORTD, 2
+00FB   2???           00366     GOTO        LOOP
                       00367     
-00FC                  00368 PWM_H2:
-00FC   0180           00369     CLRF        CUENTA
-00FD   1108           00370     BCF         PORTD, 2
-00FE   2???           00371     GOTO        LOOP
-                      00372     
-00FF                  00373 PWM_L:
-00FF   0A81           00374     INCF        CUENTA2, F
-MPASM 5.77                       NAVIDAD.ASM   11-26-2020  1:29:48         PAGE  9
+00FC                  00368 PWM_L:
+00FC   0A81           00369     INCF        CUENTA2, F
+00FD   30??           00370     MOVLW       NUMERO
+00FE   0201           00371     SUBWF       CUENTA2, W; CUENTA - NUMERO = W
+00FF   1903           00372     BTFSC       STATUS,Z
+0100   2???           00373     GOTO        PWM_L2
+0101   2???           00374     GOTO        LOOP
+MPASM 5.77                       NAVIDAD.ASM   11-26-2020  3:35:36         PAGE  9
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-0100   30??           00375     MOVLW       NUMERO
-0101   0201           00376     SUBWF       CUENTA2, W; CUENTA - NUMERO = W
-0102   1903           00377     BTFSC       STATUS,Z
-0103   2???           00378     GOTO        PWM_L2
-0104   2???           00379     GOTO        LOOP
-                      00380     
-0105                  00381 PWM_L2:
-0105   0181           00382     CLRF        CUENTA2
-0106   1508           00383     BSF         PORTD, 2
-0107   2???           00384     GOTO        LOOP
-                      00385  
-0108                  00386 TEMPO_1:
-0108   1509           00387     BSF     PORTE, 2
-0109   2???           00388     GOTO    SIGUE
-                      00389     
-010A                  00390 TEMPO_2:
-010A   1109           00391     BCF     PORTE, 2
-010B   2???           00392     GOTO    SIGUE
-                      00393     
-010C                  00394 TEMPO_3:
-010C   1109           00395     BCF     PORTE, 2
-010D   2???           00396     GOTO    SIGUE    
-                      00397     
-20DC 3FFF             00398     END
-MPASM 5.77                       NAVIDAD.ASM   11-26-2020  1:29:48         PAGE 10
+                      00375     
+0102                  00376 PWM_L2:
+0102   0181           00377     CLRF        CUENTA2
+0103   1508           00378     BSF         PORTD, 2
+                      00379     
+0104   2???           00380     GOTO        LOOP
+                      00381  
+0105                  00382 TEMPO_1:
+0105   1509           00383     BSF     PORTE, 2
+0106   2???           00384     CALL    ESC_EEPROM
+0107   2???           00385     GOTO    SIGUE
+                      00386     
+0108                  00387 TEMPO_2:
+0108   1109           00388     BCF     PORTE, 2
+0109   2???           00389     CALL    ESC_EEPROM
+010A   2???           00390     GOTO    SIGUE
+                      00391     
+010B                  00392 TEMPO_3:
+010B   1109           00393     BCF     PORTE, 2
+010C   2???           00394     CALL    ESC_EEPROM
+010D   2???           00395     GOTO    SIGUE    
+                      00396     
+20DC 3FFF             00397     END
+MPASM 5.77                       NAVIDAD.ASM   11-26-2020  3:35:36         PAGE 10
 
 
 SYMBOL TABLE
@@ -544,6 +543,7 @@ AUMENTO                           00000002
 BAND                              0000000A
 BAND2                             0000000B
 BANDERAS                          0000000E
+BARRIDOS                          00000010
 BAUDCTL                           00000187
 BCLIE                             00000003
 BCLIF                             00000003
@@ -558,13 +558,13 @@ BRG14                             00000006
 BRG15                             00000007
 BRG16                             00000003
 BRG2                              00000002
-BRG3                              00000003
-MPASM 5.77                       NAVIDAD.ASM   11-26-2020  1:29:48         PAGE 11
+MPASM 5.77                       NAVIDAD.ASM   11-26-2020  3:35:36         PAGE 11
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+BRG3                              00000003
 BRG4                              00000004
 BRG5                              00000005
 BRG6                              00000006
@@ -617,13 +617,13 @@ CCP2Y                             00000004
 CCPR1                             00000015
 CCPR1H                            00000016
 CCPR1L                            00000015
-CCPR2                             0000001B
-MPASM 5.77                       NAVIDAD.ASM   11-26-2020  1:29:48         PAGE 12
+MPASM 5.77                       NAVIDAD.ASM   11-26-2020  3:35:36         PAGE 12
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+CCPR2                             0000001B
 CCPR2H                            0000001C
 CCPR2L                            0000001B
 CHS0                              00000002
@@ -676,13 +676,13 @@ EEDAT                             0000010C
 EEDATA                            0000010C
 EEDATH                            0000010E
 EEIE                              00000004
-EEIF                              00000004
-MPASM 5.77                       NAVIDAD.ASM   11-26-2020  1:29:48         PAGE 13
+MPASM 5.77                       NAVIDAD.ASM   11-26-2020  3:35:36         PAGE 13
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+EEIF                              00000004
 EEPGD                             00000007
 ENVIO1                            000000B0
 ENVIO3                            000000A9
@@ -719,29 +719,29 @@ IRCF0                             00000004
 IRCF1                             00000005
 IRCF2                             00000006
 IRP                               00000007
-LEC_EEPROM                        000000D0
+LEC_EEPROM                        000000CF
 LEC_POTX                          0000008F
 LEC_POTY                          0000009A
-LEDS                              000000E1
-LENTO                             000000F2
-LOOP                              0000000D
+LEDS                              000000DE
+LENTO                             000000EF
+LOOP                              0000000E
 LTS                               00000001
 MC1OUT                            00000007
 MC2OUT                            00000006
 MOT                               0000000F
-MOTORDC                           000000E6
+MOTORDC                           000000E3
 MSK                               00000093
 MSK0                              00000000
 MSK1                              00000001
 MSK2                              00000002
 MSK3                              00000003
-MSK4                              00000004
-MPASM 5.77                       NAVIDAD.ASM   11-26-2020  1:29:48         PAGE 14
+MPASM 5.77                       NAVIDAD.ASM   11-26-2020  3:35:36         PAGE 14
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+MSK4                              00000004
 MSK5                              00000005
 MSK6                              00000006
 MSK7                              00000007
@@ -759,8 +759,8 @@ NOT_TO                            00000004
 NOT_TX8                           00000006
 NOT_W                             00000002
 NOT_WRITE                         00000002
-NO_SIGN                           000000FA
-NUMERO                            00000014
+NO_SIGN                           000000F7
+NUMERO                            00000011
 NUMERO2                           00000002
 OERR                              00000001
 OPTION_REG                        00000081
@@ -794,13 +794,13 @@ PORTC                             00000007
 PORTD                             00000008
 PORTE                             00000009
 PR2                               00000092
-PRSEN                             00000007
-MPASM 5.77                       NAVIDAD.ASM   11-26-2020  1:29:48         PAGE 15
+MPASM 5.77                       NAVIDAD.ASM   11-26-2020  3:35:36         PAGE 15
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+PRSEN                             00000007
 PS0                               00000000
 PS1                               00000001
 PS2                               00000002
@@ -813,10 +813,10 @@ PSTRCON                           0000009D
 PULSR                             00000002
 PULSS                             00000003
 PWM1CON                           0000009B
-PWM_H                             000000FB
-PWM_H2                            000000FC
-PWM_L                             000000FF
-PWM_L2                            00000105
+PWM_H                             000000F8
+PWM_H2                            000000F9
+PWM_L                             000000FC
+PWM_L2                            00000102
 R                                 00000002
 RA0                               00000000
 RA1                               00000001
@@ -826,7 +826,7 @@ RA4                               00000004
 RA5                               00000005
 RA6                               00000006
 RA7                               00000007
-RAPIDO                            000000F5
+RAPIDO                            000000F2
 RB0                               00000000
 RB1                               00000001
 RB2                               00000002
@@ -853,13 +853,13 @@ RCIDL                             00000006
 RCIE                              00000005
 RCIF                              00000005
 RCREG                             0000001A
-RCSTA                             00000018
-MPASM 5.77                       NAVIDAD.ASM   11-26-2020  1:29:48         PAGE 16
+MPASM 5.77                       NAVIDAD.ASM   11-26-2020  3:35:36         PAGE 16
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+RCSTA                             00000018
 RD                                00000000
 RD0                               00000000
 RD1                               00000001
@@ -891,7 +891,7 @@ SEL_RECIBIR                       00000075
 SEN                               00000000
 SENDB                             00000003
 SETUP                             00000000
-SIGN                              000000F8
+SIGN                              000000F5
 SIGUE                             0000001C
 SMP                               00000007
 SPBRG                             00000099
@@ -912,17 +912,16 @@ SSPM0                             00000000
 SSPM1                             00000001
 SSPM2                             00000002
 SSPM3                             00000003
-SSPMSK                            00000093
-MPASM 5.77                       NAVIDAD.ASM   11-26-2020  1:29:48         PAGE 17
+MPASM 5.77                       NAVIDAD.ASM   11-26-2020  3:35:36         PAGE 17
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+SSPMSK                            00000093
 SSPOV                             00000006
 SSPSTAT                           00000094
 STATUS                            00000003
-STATUS_TEMP                       00000011
 STRA                              00000000
 STRB                              00000001
 STRC                              00000002
@@ -946,9 +945,9 @@ T1SYNC                            00000002
 T2CKPS0                           00000000
 T2CKPS1                           00000001
 T2CON                             00000012
-TEMPO_1                           00000108
-TEMPO_2                           0000010A
-TEMPO_3                           0000010C
+TEMPO_1                           00000105
+TEMPO_2                           00000108
+TEMPO_3                           0000010B
 TMR0                              00000001
 TMR0IE                            00000005
 TMR0IF                            00000002
@@ -972,7 +971,7 @@ TRISA                             00000085
 TRISA0                            00000000
 TRISA1                            00000001
 TRISA2                            00000002
-MPASM 5.77                       NAVIDAD.ASM   11-26-2020  1:29:48         PAGE 18
+MPASM 5.77                       NAVIDAD.ASM   11-26-2020  3:35:36         PAGE 18
 
 
 SYMBOL TABLE
@@ -1031,7 +1030,7 @@ TXIF                              00000004
 TXREG                             00000019
 TXSTA                             00000098
 UA                                00000001
-MPASM 5.77                       NAVIDAD.ASM   11-26-2020  1:29:48         PAGE 19
+MPASM 5.77                       NAVIDAD.ASM   11-26-2020  3:35:36         PAGE 19
 
 
 SYMBOL TABLE
@@ -1052,8 +1051,6 @@ VREN                              00000007
 VROE                              00000006
 VRR                               00000005
 VRSS                              00000004
-VarT1H                            00000012
-VarT1L                            00000013
 W                                 00000000
 WCOL                              00000007
 WDTCON                            00000105
@@ -1074,7 +1071,6 @@ WR                                00000001
 WREN                              00000002
 WRERR                             00000003
 WUE                               00000001
-W_TEMP                            00000010
 XCOR                              00000008
 YCOR                              00000009
 YVIENE                            0000000D
@@ -1090,15 +1086,15 @@ _BOREN_SBODEN                     00003DFF
 _BOR_NSLEEP                       00003EFF
 _BOR_OFF                          00003CFF
 _BOR_ON                           00003FFF
-MPASM 5.77                       NAVIDAD.ASM   11-26-2020  1:29:48         PAGE 20
+_BOR_SBODEN                       00003DFF
+_CONFIG1                          00002007
+_CONFIG2                          00002008
+MPASM 5.77                       NAVIDAD.ASM   11-26-2020  3:35:36         PAGE 20
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-_BOR_SBODEN                       00003DFF
-_CONFIG1                          00002007
-_CONFIG2                          00002008
 _CPD_OFF                          00003FFF
 _CPD_ON                           00003F7F
 _CP_OFF                           00003FFF
@@ -1149,15 +1145,15 @@ _WDT_ON                           00003FFF
 _WRT_1FOURTH                      00003BFF
 _WRT_256                          00003DFF
 _WRT_HALF                         000039FF
-MPASM 5.77                       NAVIDAD.ASM   11-26-2020  1:29:48         PAGE 21
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 _WRT_OFF                          00003FFF
 _XT_OSC                           00003FF9
 __16F887                          00000001
+MPASM 5.77                       NAVIDAD.ASM   11-26-2020  3:35:36         PAGE 21
+
+
+
+
+
 
 Errors   :     0
 Warnings :     1 reported,     0 suppressed
